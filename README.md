@@ -18,7 +18,8 @@ Neuedu (东软睿道)
 
 # Day 1 - Day X: MyBatis
 [参考代码](https://github.com/Raven98/Neuedu/tree/master/TestMyBatis)  
-[MyBatis 官方文档](http://www.mybatis.org/mybatis-3/zh/getting-started.html)  
+[MyBatis 英文文档](http://www.mybatis.org/mybatis-3/)
+[MyBatis 中文文档](http://www.mybatis.org/mybatis-3/zh/getting-started.html)  
 本文内容很大程度地参考了官方文档，mybatis有中文版本的文档并且极其简洁，推荐阅读
 ## 1. 了解MyBatis
 - 优秀的持久层框架

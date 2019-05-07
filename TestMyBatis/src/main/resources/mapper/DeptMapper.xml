@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.model.mapper.DeptMapper">
+    <select id="selectDept" resultType="Dept">
+    select * from dept where deptno = #{deptno}
+  </select>
+
+    <select id="selectAllDept" resultType="Dept">
+        select * from dept
+    </select>
+
+    <select id="selectDeptByName" resultType="Dept">
+    select * from dept where dname like "%"#{dname}"%"
+  </select>
+
+    <select id="selectDeptByNameAndLoc" resultType="Dept">
+    select * from dept where dname = #{dname} and loc = #{loc}
+  </select>
+</mapper>

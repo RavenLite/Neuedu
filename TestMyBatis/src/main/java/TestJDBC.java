@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.neuedu.model.mapper.EmpMapper;
 import com.neuedu.model.po.Dept;
 
 public class TestJDBC {

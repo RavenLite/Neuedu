@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.model.mapper.EmpMapper">
+
+    <insert id="addEmp" useGeneratedKeys="true" keyProperty="empno">
+    insert into emp values(null,#{ename},#{job},#{mgr},#{hiredate},#{sal},#{comm},#{deptno})
+ </insert>
+
+    <insert id="addEmp1" useGeneratedKeys="true" keyProperty="empno">
+    insert into emp values(null,#{ename},#{job},#{mgr},#{hiredate},#{sal},#{comm},#{deptno})
+ </insert>
+
+    <update id="updateEmp">
+        update emp set sal=#{sal}, comm=#{comm} where empno = #{empno}
+    </update>
+    <sql id="fromemp">
+        from emp where empno=#{empno}
+    </sql>
+    <delete id="deleteEmp">
+        delete
+        <include refid="fromemp"></include>
+    </delete>
+    <select id="getJobByEmpno" resultType="string">
+        select job
+        <include refid="fromemp"></include>
+    </select>
+
+    <select id="getInfoByEmpno" resultType="hashmap">
+        select ename, job
+        <include refid="fromemp"></include>
+    </select>
+</mapper>

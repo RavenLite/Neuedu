@@ -2,27 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="520debab-2ee5-408a-9438-866fc471e424" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestMyBatis/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TestMyBatis/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestMyBatis/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TestMyBatis/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestMyBatis/src/main/java/TestJDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TestMyBatis/src/main/java/TestJdbc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestMyBatis/src/main/java/TestMyBatis.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TestMyBatis/src/main/java/TestMyBatis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestMyBatis/src/main/java/TestMyBatisEmp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TestMyBatis/src/main/java/TestMyBatisEmp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestMyBatis/src/main/java/com/neuedu/model/mapper/DeptMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TestMyBatis/src/main/java/com/neuedu/model/mapper/DeptMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestMyBatis/src/main/java/com/neuedu/model/mapper/EmpMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TestMyBatis/src/main/java/com/neuedu/model/mapper/EmpMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestMyBatis/src/main/java/com/neuedu/model/po/Dept.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TestMyBatis/src/main/java/com/neuedu/model/po/Dept.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestMyBatis/src/main/java/com/neuedu/model/po/Emp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TestMyBatis/src/main/java/com/neuedu/model/po/Emp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestMyBatis/src/main/resources/mapper/EmpMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TestMyBatis/src/main/resources/mapper/EmpMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestMyBatis/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TestMyBatis/src/main/resources/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestMyBatis/target/classes/TestJDBC.class" beforeDir="false" afterPath="$PROJECT_DIR$/../TestMyBatis/target/classes/TestJDBC.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestMyBatis/target/classes/TestMyBatis.class" beforeDir="false" afterPath="$PROJECT_DIR$/../TestMyBatis/target/classes/TestMyBatis.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestMyBatis/target/classes/TestMyBatisEmp.class" beforeDir="false" afterPath="$PROJECT_DIR$/../TestMyBatis/target/classes/TestMyBatisEmp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestMyBatis/target/classes/com/neuedu/model/mapper/DeptMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/../TestMyBatis/target/classes/com/neuedu/model/mapper/DeptMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestMyBatis/target/classes/com/neuedu/model/mapper/EmpMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/../TestMyBatis/target/classes/com/neuedu/model/mapper/EmpMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestMyBatis/target/classes/com/neuedu/model/po/Dept.class" beforeDir="false" afterPath="$PROJECT_DIR$/../TestMyBatis/target/classes/com/neuedu/model/po/Dept.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestMyBatis/target/classes/com/neuedu/model/po/Emp.class" beforeDir="false" afterPath="$PROJECT_DIR$/../TestMyBatis/target/classes/com/neuedu/model/po/Emp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestMyBatis/target/classes/mapper/EmpMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TestMyBatis/target/classes/mapper/EmpMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestMyBatis/target/classes/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TestMyBatis/target/classes/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Notes.md" beforeDir="false" afterPath="$PROJECT_DIR$/../Notes.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -70,6 +50,7 @@
     <session id="1863600341">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
@@ -222,12 +203,12 @@
       <option name="presentableId" value="Default" />
       <updated>1557380272262</updated>
       <workItem from="1557380273686" duration="3295000" />
-      <workItem from="1557390409034" duration="1331000" />
+      <workItem from="1557390409034" duration="1583000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4626000" />
+    <option name="totallyTimeSpent" value="4878000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />

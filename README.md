@@ -16,12 +16,14 @@ Neuedu (东软睿道)
 2019.05-07 - 至今  
 <img src="http://ws1.sinaimg.cn/large/006tNc79ly1g2sta9fzrjj303w027glg.jpg" width="200rpx"/>
 
-# 索引
+# 目录
 - Day 1 - Day 4: MyBatis
 - Day 4 - Day X: Spring IOC
 - Learning...
 
-现仍处于学习阶段，随着学习程度的加深会对现有知识有新的理解以及找寻到更好的参考资料，随时会对笔记进行更新。
+现仍处于学习阶段，随着学习程度的加深会对现有知识有新的理解以及找寻到更好的参考资料，随时会对笔记进行更新。😋  
+为了获得更优阅读体验，您可移步至我的博客。  
+[东软睿道实训杂记](https://ravenxu.top/2019/05/07/%E4%B8%9C%E8%BD%AF%E7%9D%BF%E9%81%93%E5%AE%9E%E8%AE%AD%E6%9D%82%E8%AE%B0/)
 
 # Day 1 - Day 4: MyBatis
 [参考代码](https://github.com/Raven98/Neuedu/tree/master/TestMyBatis)  
@@ -97,7 +99,7 @@ DeptMapper mapper = session.getMapper(DeptMapper.class);
 Dept d = mapper.selectDept(20);
 System.out.println(d.getDeptno()+"\t"+d.getDname()+"\t"+d.getLoc());
 ```
->新旧方式对比(个人理解)
+>新旧方式对比(个人理解)  
 ![](http://ws3.sinaimg.cn/large/006tNc79ly1g2sifw8z3tj30fz0aujrd.jpg)
 旧方式业务代码直接根据(namespace+id)调用XML里面的某一个方法  
 新方式将XML和接口双向绑定，业务代码不需要知道XML文件内容，直接调用接口。  
@@ -180,10 +182,19 @@ resultType省去路径前缀
     </mappers>
 ```
 ## 6. 使用log.4j日志管理工具
-### 6.1. 
-
+[最详细的Log4J使用教程](https://blog.csdn.net/u013870094/article/details/79518028)
+### 6.1. 配置文件
+```
+# Global logging configuration
+log4j.rootLogger=DEBUG, stdout
+# MyBatis logging configuration...
+log4j.logger.org.mybatis.example.BlogMapper=TRACE
+# Console output...
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
+```
 ### 
-
 ## 7. 尝试更多sql
 1. like语句
 2. 更多变量
@@ -324,7 +335,7 @@ mybatis的性能是不如JDBC的，但是它通过cache等操作尽力提升了�
    一个mapper.mxl对应一个接口文件对应一个数据库的表
 3. MyBatis
    MyBatis作为一个框架，还是对现有接口的封装，可以参考轻量级框架[sql2o](https://www.sql2o.org/)的设计思想自行设计一个框架
-
+4. 存储过程的使用场景：阿里巴巴Java开发手册明确写明了禁止使用存储过程，究其原因更多是因为存储过程代码可读性极差、debug困难，对于阿里这样的大企业有其他措施弥补性能；对于东软这样的外包公司，如果是一个**需求明确**的任务还是可以写存储过程的，毕竟因为存储过程在数据库内一次性完成多个操作性能会更好。
 # Day 4 - Day X: Spring IOC
 ## 参考资料
 - [参考代码](https://github.com/Raven98/Neuedu/tree/master/SpringCore)  

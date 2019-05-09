@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean refers to Class which expect Spring to create instance, manage their dependencies -->
+    <bean id="testDAO" class="testspringcore.TestDAO" lazy-init="true">
+    </bean>
+
+    <bean id="testService" class="testspringcore.TestService">
+    </bean>
+
+    <!-- define a factory method for spring to use to create instance of the bean -->
+    <bean id="testBean" class="testspringcore.TestBean" factory-method="getInstance" scope="prototype">
+    </bean>
+
+    <!-- register factory bean -->
+    <bean id="testBean2Factory" class="testspringcore.TestBean2Factory"></bean>
+
+    <!-- register testbean2 -->
+    <bean id="testBean2" factory-bean="testBean2Factory" factory-method="getInstance" scope="prototype"></bean>
+
+</beans>

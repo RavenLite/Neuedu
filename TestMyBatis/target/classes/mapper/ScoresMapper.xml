@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.model.mapper.ScoresMapper">
+
+<select id="getStudentById" resultMap="_student">
+   select s.sid, s.sname, c.cid, c.cname, ss.id,ss.score
+from student s, course c, scores ss
+where s.sid = ss.sid
+and c.cid = ss.cid
+and s.sid = #{sid}
+</select>
+
+<resultMap type="Student" id="_student">
+    <id property="sid" column="sid"/>
+    <result property="sname" column="sname"></result>
+    <collection property="scores" ofType="Scores">
+       <id property="id" column="id"/>
+       <result property="score" column="score"/>
+       <association property="c" javaType="Course">
+           <id property="cid" column="cid"/>
+           <result property="cname" column="cname"></result>
+       </association>
+    </collection>
+</resultMap>
+ 
+</mapper>

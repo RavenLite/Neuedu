@@ -6,6 +6,9 @@ import org.apache.ibatis.session.SqlSession;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * @author Raven
+ */
 public class TestMyBatis {
 
     public static void main(String[] args) {
@@ -50,6 +53,5 @@ public class TestMyBatis {
             //output its content
             System.out.println(item.getDeptno() + "\t" + item.getDname() + "\t" + item.getLoc());
         }
-
     }
 }

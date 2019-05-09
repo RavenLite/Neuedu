@@ -6,10 +6,13 @@ import org.apache.ibatis.session.SqlSession;
 import java.sql.Date;
 import java.util.HashMap;
 
+/**
+ * @author Raven
+ */
 public class TestMyBatisEmp {
 
     public static void main(String[] args) {
-        getInfo();
+        getEmpInfo();
     }
 
     public static void insert1() {
@@ -24,12 +27,12 @@ public class TestMyBatisEmp {
         emp.setEname("feiyy");
         emp.setMgr(7369);
         emp.setJob("teacher");
+
         //how to get a sql.Date
-        //System.currentTimeMillis() returns milliseconds between now and 1970-1-1 0:0:0
+        //System.currentTimeMillis(): returns milliseconds between now and 1970-1-1 0:0:0
         emp.setHiredate(new Date(System.currentTimeMillis()));
         emp.setSal(8888.88);
         emp.setComm(6666.66);
-        emp.setDeptno(10);
         mapper.addEmp(emp);
 
         System.out.println(emp.getEmpno());
@@ -99,6 +102,17 @@ public class TestMyBatisEmp {
 
         HashMap info = mapper.getInfoByEmpno(7369);
         System.out.println(info.get("ename") + "\t" + info.get("job"));
+    }
+
+    public static void getEmpInfo()
+    {
+        //1.get SqlSession
+        SqlSession session = DBUtils.getInstance();
+        //2.get Mapper
+        EmpMapper mapper = session.getMapper(EmpMapper.class);
+
+        Emp e = mapper.getEmpInfoByEmpno(7369);
+        System.out.println(e.getEmpno()+"\t"+e.getEname()+"\t"+e.getD().getDname()+"\t"+e.getD().getLoc());
     }
 
 }

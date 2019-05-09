@@ -31,4 +31,103 @@
         select ename, job
         <include refid="fromemp"></include>
     </select>
+
+    <select id="getByColumn">
+
+    </select>
+    
+    <select id="getDeptByName">
+        select * from dept where dname like "%#{dname}%"
+    </select>
+
+    <select id="getEmpInfoByEmpno" resultMap="_emp">
+    select e.*, d.dname, d.loc
+    from emp e, dept d
+    where e.deptno = d.deptno
+    and e.empno = #{empno}
+    </select>
+
+    <resultMap type="Emp" id="_emp">
+        <id property="empno" column="empno" />
+        <result property="ename" column="ename"/>
+        <result property="ename" column="ename"/>
+        <result property="job" column="job"/>
+        <result property="mgr" column="mgr"/>
+        <result property="hiredate" column="hiredate"/>
+        <result property="sal" column="sal"/>
+        <result property="comm" column="comm"/>
+        <association property="d" javaType="Dept">
+            <result property="dname" column="dname"/>
+            <result property="loc" column="loc"/>
+        </association>
+    </resultMap>
+
+
+    <!-- 动态查询 if -->
+    <select id="getEmpByConditions" resultType="Emp">
+      select * from emp
+        <where>
+            <if test="empno != 0">
+                and empno = #{empno}
+            </if>
+            <if test="ename != null">
+                and ename = #{ename}
+            </if>
+            <if test="job != null">
+                and job = #{job}
+            </if>
+        </where>
+    </select>
+
+    <!-- 动态查询 choose when otherwise -->
+    <select id="getEmpByOneCondition" resultType="Emp">
+        select * from emp
+        <where>
+            <choose>
+                <when test="empno != 0">
+                    and empno = #{empno}
+                </when>
+                <when test="ename != null">
+                    and ename = #{ename}
+                </when>
+                <when test="job != null">
+                    and job = #{job}
+                </when>
+            </choose>
+        </where>
+    </select>
+
+    <!-- 动态更新 -->
+    <update id="updateEmpByCondition">
+        update emp
+        <set>
+            <if test="ename != null">
+                ename = #{ename},
+            </if>
+            <if test="job != null">
+                job = #{job},
+            </if>
+        </set>
+        where empno = #{empno}
+    </update>
+
+    <!-- foreach -->
+    <select id="getEmps" resultType="Emp">
+        select * from emp where empno in
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="getEmps2" resultType="Emp">
+        select * from emp where empno in
+        <foreach collection="array" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </select>
+
+    <!-- 分页 -->
+    <select id="getEmpByPage" resultType="Emp">
+        select * from emp limit #{index}, #{count}
+    </select>
 </mapper>

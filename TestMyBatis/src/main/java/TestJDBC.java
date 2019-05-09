@@ -4,10 +4,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.neuedu.model.mapper.EmpMapper;
 import com.neuedu.model.po.Dept;
 
-public class TestJDBC {
+/**
+ * @author Raven
+ */
+public class TestJdbc {
     public static void main(String[] args) {
         Connection conn = null;
         PreparedStatement stat = null;
@@ -38,14 +40,10 @@ public class TestJDBC {
                 System.out.println(d.getDeptno()+"\t"+d.getDname()+"\t"+d.getLoc());
             }
             //5. get the result
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        finally
+        } finally
         {
             if(rs!=null)
             {
@@ -78,8 +76,5 @@ public class TestJDBC {
             }
 
         }
-
-
     }
-
 }

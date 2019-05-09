@@ -25,6 +25,7 @@
     <mappers>
         <mapper resource="mapper/DeptMapper.xml"></mapper>
         <mapper resource="mapper/EmpMapper.xml"></mapper>
-        <!--<package name="mapper"/>-->
+        <mapper resource="mapper/ScoresMapper.xml"></mapper>
+        <!--<package name="/Users/raven/Workspace/java/Neuedu/TestMyBatis/src/main/resources/mapper"/>-->
     </mappers>
 </configuration>

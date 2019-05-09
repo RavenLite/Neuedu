@@ -12,4 +12,7 @@ public interface DeptMapper {
 
     //have more than one argument
     public List<Dept> selectDeptByNameAndLoc(@Param("dname")String dname, @Param("loc")String loc);
+
+    public Dept getDept(int deptno);
+    public List<Dept> getDepts();
 }

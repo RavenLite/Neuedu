@@ -7,7 +7,6 @@ import java.sql.Date;
 //po stands for persist object
 //pojo plain old java object
 public class Emp {
-
     private int empno;
     private String ename;
     private String job;
@@ -18,11 +17,11 @@ public class Emp {
     //sql.data does't have time,util.date have time
     //in jdbc, if the database only store yyyy-mm-dd, you should use sql.date here
     //in jdbc, if the database also store hh-mm-ss, you should use sql.timestamp
-	//in mybatis, you can use util.date
+	// in mybatis, you can use util.date
     private Date hiredate;
     private double sal;
     private double comm;
-    private int deptno;
+    private Dept d;
     public int getEmpno() {
         return empno;
     }
@@ -65,11 +64,12 @@ public class Emp {
     public void setComm(double comm) {
         this.comm = comm;
     }
-    public int getDeptno() {
-        return deptno;
+    public Dept getD() {
+        return d;
     }
-    public void setDeptno(int deptno) {
-        this.deptno = deptno;
+    public void setD(Dept d) {
+        this.d = d;
     }
+
 
 }

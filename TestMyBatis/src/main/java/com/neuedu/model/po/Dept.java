@@ -1,9 +1,21 @@
 package com.neuedu.model.po;
 
+import java.util.List;
+
 public class Dept {
     private int deptno;
     private String dname;
     private String loc;
+
+    public List<Emp> getEmps() {
+        return emps;
+    }
+
+    public void setEmps(List<Emp> emps) {
+        this.emps = emps;
+    }
+
+    private List<Emp> emps;
 
     public int getDeptno() {
         return deptno;

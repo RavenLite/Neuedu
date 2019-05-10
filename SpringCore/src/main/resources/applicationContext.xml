@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- bean refers to Class which expect Spring to create instance, manage their dependencies -->
     <bean id="testDAO" class="testspringcore.TestDAO" lazy-init="true">
     </bean>
+    <bean id="userDAO" class="testspringcore.UserDAO">
+    </bean>
 
     <bean id="testService" class="testspringcore.TestService">
+        <!--<property name="testDAO" ref="testDAO"></property>-->
+        <!--<property name="userDAO" ref="userDAO"></property>-->
+        <constructor-arg ref="testDAO"></constructor-arg>
+        <constructor-arg ref="userDAO"></constructor-arg>
     </bean>
 
     <!-- define a factory method for spring to use to create instance of the bean -->
@@ -21,4 +28,29 @@
     <!-- register testbean2 -->
     <bean id="testBean2" factory-bean="testBean2Factory" factory-method="getInstance" scope="prototype"></bean>
 
+    <!-- collection properties -->
+    <bean id="exampleBean" class="testspringcore.ExampleBean" p:years="7500000" p:ultimateAnswer="42">
+        <!--  <constructor-arg name="years" value="7500000"></constructor-arg>
+         <constructor-arg name="ultimateAnswer" value="42"></constructor-arg> -->
+        <property name="list">
+            <list>
+            <value>str1</value>
+            <value>str2</value>
+            <value>str3</value>
+            </list>
+        </property>
+        <property name="set">
+            <set>
+            <value>strset1</value>
+            <value>strset2</value>
+            <value>strset3</value>
+            </set>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="an entry" value="just some string"/>
+                <entry key ="a ref" value="myDataSource"/>
+            </map>
+        </property>
+    </bean>
 </beans>

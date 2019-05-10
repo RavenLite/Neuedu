@@ -10,11 +10,28 @@ public class TestService {
         System.out.println("spring create a bean");
     }
 
-    //IOC inversion of control, also called DI(dependency injection)
+    // IOC inversion of control, also called DI(dependency injection)
+    // collaborator
     private TestDAO testDAO;
+    private UserDAO userDAO;
 
     public void setTestDAO(TestDAO testDAO) {
         this.testDAO = testDAO;
+
+    }
+
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+
+    public TestService(UserDAO userDAO, TestDAO testDAO) {
+        this.userDAO = userDAO;
+        this.testDAO = testDAO;
+    }
+
+    public void outputDependency() {
+        System.out.println(testDAO);
+        System.out.println(userDAO);
     }
 
     public static void main(String[] args) {
@@ -69,8 +86,6 @@ public class TestService {
         System.out.println(t);
         System.out.println(t2);
         System.out.println(t3);
-
-
     }
 
 }

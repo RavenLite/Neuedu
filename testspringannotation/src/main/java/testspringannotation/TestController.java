@@ -12,8 +12,8 @@ public class TestController {
 	//Spring will have a rule to find matching dependencies, first find by Type, if it find
 	//more matches(in this case, TestService could be interface, or a super class), then find by name
 	
-	@Autowired	
-	private TestService testService;
+	/*@Autowired	*/
+	//private TestService testService;
 	
 	/*public void setTestService(TestService testService) {
 		this.testService = testService;
@@ -22,7 +22,7 @@ public class TestController {
 	public void outputcollaborators()
 	{
 		//invoke method the service
-		testService.outputinfo();
+		//testService.outputinfo();
 	}
 
 }

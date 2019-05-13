@@ -8,6 +8,8 @@ tags:
     - Java
     - 互联网架构
     - MyBatis
+    - Spring IOC
+    - Spring AOP
 ---
 
 # Neuedu
@@ -17,8 +19,8 @@ Neuedu (东软睿道)
 <img src="http://ws1.sinaimg.cn/large/006tNc79ly1g2sta9fzrjj303w027glg.jpg" width="200rpx"/>
 
 # 目录
-- Day 1 - Day 4: MyBatis
-- Day 4 - Day X: Spring IOC
+- Day 1 - Day 3: MyBatis
+- Day 4 - Day 5: Spring IOC
 - Learning...
 
 现仍处于学习阶段，随着学习程度的加深会对现有知识有新的理解以及找寻到更好的参考资料，随时会对笔记进行更新。😋  
@@ -336,7 +338,8 @@ public static void queryByPage() {
 3. MyBatis
    MyBatis作为一个框架，还是对现有接口的封装，可以参考轻量级框架[sql2o](https://www.sql2o.org/)的设计思想自行设计一个框架
 4. 存储过程的使用场景：阿里巴巴Java开发手册明确写明了禁止使用存储过程，究其原因更多是因为存储过程代码可读性极差、debug困难，对于阿里这样的大企业有其他措施弥补性能；对于东软这样的外包公司，如果是一个**需求明确**的任务还是可以写存储过程的，毕竟因为存储过程在数据库内一次性完成多个操作性能会更好。
-# Day 4 - Day X: Spring IOC
+# Day 4 - Day 5: Spring IOC
+
 ## 参考资料
 - [参考代码(基于XML)](https://github.com/Raven98/Neuedu/tree/master/SpringCore)  
 - [参考代码(基于注解)](https://github.com/Raven98/Neuedu/tree/master/testspringannotation)  
@@ -622,15 +625,23 @@ private Map<String, String> map;
 <bean id="manager" class="ManagerBean" />
 ```
 `depends-on`内可用分隔符分隔指明多个依赖关系
+
 #### 3.1.7. Lazy-initialized beans
 前面我们已经提到过，这代表延迟加载单例bean  
 以前我们不这样做，但是现在内存等硬件条件上升，我们常常对单例实例不使用延迟加载，我们用空间换时间，为了更好性能。  
 *程序使用`ClassPathXmlApplicationContext()`注入时只默认注入全部的单例类，非单例类我们不知道该创建多少个，也没必要提前创建*
+
 ### 3.2. 使用注解方式实现依赖注入
-- @Component->通用组件
-- @Controller->控制器
-- @Service-> Service
-- @Repository -> DAO
+- @Component->通用组件  
+  泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。
+- @Controller->控制器  
+  用于标注控制层组件（如struts中的action）
+- @Service-> Service  
+  用于标注业务层组件
+- @Repository -> DAO  
+  用于标注数据访问组件，即DAO组件
+*@Component泛指所有组件，其他三个是拥有特殊语义的注解*
+
 #### 3.2.1. demo
 *applicationContext.xml*
 ```xml
@@ -747,3 +758,261 @@ MVC是所有web项目为了实现“高内聚，低耦合”应遵循的模式�
 >Spring框架则避免了调用者与工厂之间的耦合，通过spring容器“宏观调控”，调用者只要被动接受spring容器为调用者的成员变量赋值即可，而不需要主动获取被依赖对象。这种被动获取的方式就叫做依赖注入，又叫控制反转。依赖注入又分为设值注入和构造注入。而spring框架则负责通过配置xml文件来实现依赖注入。而设值注入和构造注入则通过配置上的差异来区分。
 
 **依赖注入 == 控制反转**
+
+# Day 6 - Day X: Spring AOP
+## 1. 了解AOP
+
+### 1.1. 名词解释
+- AOP: Aspect-Oriented Programming: 面向切面编程  
+  分布于应用中多处的功能称为横切关注点，通过这些横切关注点在概念上是与应用的业务逻辑相分离的，但其代码往往直接嵌入在应用的业务逻辑之中。将这些横切关注点与业务逻辑相分离正是面向切面编程（AOP）所要解决的。切面实现了横切关注点的模块化  
+  一句话概括：切面是跟具体业务无关的一类共同功能。
+- advice
+- pointcut
+- weaving
+
+## 2. 配置
+### 2.1. @Before
+### 2.2. @AfterReturning
+### 2.3. @AfterThrowing
+### 2.4. @After
+### 2.5. 执行顺序探究
+篇幅过程，稍后更新
+
+## 3.Demo
+JDBC事务处理是经常使用AOP的一个典型事例（其他还有诸如日志等），我们举例对比使用AOP前后代码量与代码结构的变化。
+### 3.1. 使用切面之前
+*DBUtils.java*
+```java
+public class DBUtils {
+	
+	private static ThreadLocal<Connection> tl = new ThreadLocal<>();
+	
+	static
+	{
+		//加载数据库驱动
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void beginTransaction()
+	{
+		//1.得到数据库连接
+		Connection conn = getConnection();
+		//2.设置自动提交为false    
+		try {
+			conn.setAutoCommit(false);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
+	
+	public static Connection getConnection()
+	{
+		Connection conn = tl.get();
+		if(conn==null)
+		{			
+			try {
+				conn = DriverManager.
+						getConnection("jdbc:mysql://localhost:3306/mydb?useUnicode=true&characterEncoding=utf8", "root", "root");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//放在本地线程
+			tl.set(conn);
+		}
+		
+		return conn;
+	}
+	
+	public static void commit()
+	{
+		//1.得到数据库连接
+		Connection conn = getConnection();
+		//2. 提交
+		try {
+			conn.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void rollback()
+	{
+		//1.得到数据库连接
+		Connection conn = getConnection();
+		//2. 提交
+		try {
+			conn.rollback();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void close()
+	{
+		//1.得到数据库连接
+		Connection conn = getConnection();
+		//2. 提交
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//3.把conn从tl中移除
+		tl.remove();
+	}
+}
+```
+*Service类 Service.java*
+```java
+@Service
+public class AccountService {
+	
+	@Autowired
+	AccountDAO accountDAO;
+	
+	public void transferMoney()
+	{		
+		//1. 获得数据库连接，开启事务
+		DBUtils.beginTransaction();
+		try
+		{			
+			accountDAO.deduct();
+			accountDAO.add();
+			
+			DBUtils.commit();
+		}
+		catch(Exception e)
+		{
+			DBUtils.rollback();
+			e.printStackTrace();
+		}
+		finally
+		{
+			DBUtils.close();
+		}
+	}
+	
+	public static void main(String[] args) {
+		//1. 开启spring容器
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		
+		AccountService accountService = (AccountService)context.getBean("accountService");
+		
+		accountService.transferMoney();
+	}
+}
+```
+*AccountDAO.java*
+```java
+@Repository
+public class AccountDAO {
+	
+	public void deduct() throws SQLException
+	{
+		//1. 获得连接
+		Connection conn = DBUtils.getConnection();
+		
+		PreparedStatement ps = conn.prepareStatement("update account set balance = balance-10 where accountid =2");
+	    ps.executeUpdate();	     
+	}
+	
+	public void add() throws SQLException
+	{
+		//1. 获得连接
+		Connection conn = DBUtils.getConnection();
+		
+		PreparedStatement ps = conn.prepareStatement("update account set balance = balance+10 where accountid =1");
+	    ps.executeUpdate();
+	}
+}
+```
+### 3.2. 使用切面之后
+*切面类 TransactionAspect.java*
+```java
+@Component
+@Aspect
+public class TransactionAspect {
+	
+	@Before("execution(* com.neuedu.model.service.AccountService.*(..))")
+	public void getConnection()
+	{
+		DBUtils.getConnection();
+	}
+	
+	@AfterReturning("execution(* com.neuedu.model.service.AccountService.*(..))")
+	public void commitConnection()
+	{
+		DBUtils.commitConnection();
+		DBUtils.closeConnection();
+		
+	}
+	
+	@AfterThrowing("execution(* com.neuedu.model.service.AccountService.*(..))")
+	public void rollbackConnection()
+	{
+		DBUtils.rollbackConnection();
+		DBUtils.closeConnection();
+	}
+	
+	@After("execution(* com.neuedu.model.service.AccountService.*(..))")
+	public void closeConnection()
+	{
+		DBUtils.closeConnection();		
+	}
+}
+```
+*Service类 MyService.java*
+```java
+class MyService
+{
+      public void test()
+      {       
+           MyDAO myDAO = new MyDAO();
+           myDAO.deduct();          
+           myDAO.add();         
+       }
+}
+```
+可见，Service类被简化了，目前Service只有一个方法，显然可以预测随着业务的增多Service将提供越来越多的业务函数，利用切面将只关注真正的业务逻辑而不再需要写context比较低的代码。
+
+## 3. 探究AOP实现机制：动态代理  
+**注意:** AOP不是代码拷贝，是方法调用  
+有两种动态代理方式
+### 3.1. 运行时创建临时对象
+- 方法1: 实现一个接口，spring直接调用jdk，创建一个类，实现一个接口
+- 方法2: 没实现接口，spring调用内置的cglib
+
+### 3.2. 编译过程修改编译生成的class文件
+- Aspectj修改.class文件
+- Spring AOP依赖IOC
+
+
+## 4.思考
+### 4.1. 补充知识点
+- 判断是否是同一个对象：打印对象地址。
+
+- 什么时候把类加载到内存？三种情况：
+  - new类的对象
+  - 调用类的静态方法
+  - Class.forName("");
+
+- JDBC事务
+  >事务是必须满足4个条件（ACID）
+  >事务的原子性（ Atomicity）：一组事务，要么成功；要么撤回。  
+    一致性 （Consistency）：事务执行后，数据库状态与其他业务规则保持一致。如转账业务，无论事务执行成功否，参与转账的两个账号余额之和应该是不变的。  
+    隔离性（Isolation）：事务独立运行。一个事务处理后的结果，影响了其他事务，那么其他事务会撤回。事务的100%隔离，需要牺牲速度。  
+    持久性（Durability）：软、硬件崩溃后，InnoDB数据表驱动会利用日志文件重构修改。可靠性和高速度不可兼得， innodb_flush_log_at_trx_commit 选项 决定什么时候吧事务保存到日志里。
+
+- DML
+  SQL分为DML数据库操纵语言（SELECT INSERT DELETE UPDATE）和DDL数据库定义语言（创建表时的一些定义操作ALTER等）  
+  JDBC默认自动提交，即`executeUpdate()`后自动执行了commit()。但是我们想保持数据库的原子性，所以在上面通过`conn.setAutoCommit(false);`禁用自动提交。禁用后支持`rollback()`回滚操作及`rollback(Savepoint savepoint) `回滚到固定位置。数据库在`commit()`前都没被真正改变，都能通过`rollback()`撤销之前做的`executeUpdate()`操作。数据库应该只是有一个临时的镜像而已。COMMIT命令用于把事务所做的修改保存到数据库。

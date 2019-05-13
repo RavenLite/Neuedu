@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         https://www.springframework.org/schema/context/spring-context.xsd
@@ -11,13 +11,14 @@
         https://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <context:annotation-config/>
-
+    
     <!-- to enable AOP aspect weave -->
     <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-
+    
     <!-- specify where beans locate -->
     <context:component-scan base-package="testspringannotation"></context:component-scan>
     <context:component-scan base-package="com.neuedu.model.service"></context:component-scan>
+    <context:component-scan base-package="com.neuedu.model.dao"></context:component-scan>
     <context:component-scan base-package="com.neuedu.aspect"></context:component-scan>
 
 

@@ -2,43 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ef0e711-711c-41c9-aff0-98fd1f519cf9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../TestMyBatis/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TestMyBatis/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_40.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_9_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/.idea/libraries/Maven__org_mybatis_mybatis_3_5_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/.idea/libraries/Maven__org_springframework_spring_aop_5_1_6_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/.idea/libraries/Maven__org_springframework_spring_beans_5_1_6_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/.idea/libraries/Maven__org_springframework_spring_context_5_1_6_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/.idea/libraries/Maven__org_springframework_spring_core_5_1_6_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/.idea/libraries/Maven__org_springframework_spring_expression_5_1_6_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/.idea/libraries/Maven__org_springframework_spring_jcl_5_1_6_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../testspringannotation/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/src/main/java/com/neuedu/aspect/LogAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/../testspringannotation/src/main/java/com/neuedu/aspect/LogAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/src/main/java/com/neuedu/aspect/TransactionAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/../testspringannotation/src/main/java/com/neuedu/aspect/TransactionAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/src/main/java/com/neuedu/model/dao/AccountDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../testspringannotation/src/main/java/com/neuedu/model/dao/AccountDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/src/main/java/com/neuedu/model/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../testspringannotation/src/main/java/com/neuedu/model/service/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/src/main/java/com/neuedu/model/service/IAccountService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/src/main/java/com/neuedu/utils/DBUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../testspringannotation/src/main/java/com/neuedu/utils/DBUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/src/main/resources/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../testspringannotation/src/main/resources/applicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/target/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../testspringannotation/target/classes/applicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/target/classes/com/neuedu/aspect/TestAspect.class" beforeDir="false" afterPath="$PROJECT_DIR$/../testspringannotation/target/classes/com/neuedu/aspect/TestAspect.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/target/classes/com/neuedu/aspect/TransactionAspect.class" beforeDir="false" afterPath="$PROJECT_DIR$/../testspringannotation/target/classes/com/neuedu/aspect/TransactionAspect.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/target/classes/com/neuedu/model/dao/AccountDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../testspringannotation/target/classes/com/neuedu/model/dao/AccountDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/target/classes/com/neuedu/model/service/AccountService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../testspringannotation/target/classes/com/neuedu/model/service/AccountService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/target/classes/com/neuedu/model/service/DeptService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../testspringannotation/target/classes/com/neuedu/model/service/DeptService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/target/classes/com/neuedu/model/service/IAccountService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../testspringannotation/target/classes/com/neuedu/model/service/IAccountService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/target/classes/com/neuedu/model/service/ITestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../testspringannotation/target/classes/com/neuedu/model/service/ITestService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/target/classes/com/neuedu/model/service/TestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../testspringannotation/target/classes/com/neuedu/model/service/TestService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/target/classes/com/neuedu/utils/DBUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../testspringannotation/target/classes/com/neuedu/utils/DBUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/target/classes/testspringannotation/TestTestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../testspringannotation/target/classes/testspringannotation/TestTestService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringannotation/testspringannotation.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,10 +16,10 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="3" />
-          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -87,7 +51,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -146,8 +110,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -319,16 +283,17 @@
       <workItem from="1557813632987" duration="690000" />
       <workItem from="1557814357497" duration="1291000" />
       <workItem from="1557815747837" duration="2545000" />
+      <workItem from="1557820097828" duration="405000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4526000" />
+    <option name="totallyTimeSpent" value="4931000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3004292" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30472103" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />

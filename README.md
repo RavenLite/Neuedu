@@ -1,21 +1,6 @@
----
-title: 「置顶」东软睿道实训杂记
-date: 2019-05-08 10:00:00
-category: "Java"
-top: 2
-tags: 
-    - 东软睿道
-    - 实习
-    - Java
-    - 互联网架构
-    - MyBatis
-    - Spring IOC
-    - Spring AOP
----
-
-# Neuedu（东软睿道）
 <img src="http://ws1.sinaimg.cn/large/006tNc79ly1g30xqf7vbvj3080037aa7.jpg" width="200rpx"/>   
 
+# Introduction
 - 内容：Java互联网架构基础知识  
 - 时间：2019.05-07 - 2019.07.05  
 - 背景：软件学院大三下学期9学分[企业项目实训](http://sc.neu.edu.cn/2019/0328/c99a90425/page.htm)
@@ -27,7 +12,7 @@ tags:
 - Learning...
 
 ## Warning
-⚠️**受本人学识所限，本博客的学习意义不大，更多地可作为同期课程同学对课堂知识的一个回顾即课程讲义😋**  
+⚠️**受本人学识所限，本项目笔记的学习意义不大，更多地可作为同期课程同学对课堂知识的一个回顾即课程讲义😋**  
 
 ## Contribution
 **欢迎各位大佬在[本项目](https://github.com/Raven98/Neuedu)发起PR或在Issues里留言邀请您成为协作者，共同完善本文档**

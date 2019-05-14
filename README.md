@@ -1,6 +1,6 @@
 ---
 title: 「置顶」东软睿道实训杂记
-date: 2018-05-08 10:00:00
+date: 2019-05-08 10:00:00
 category: "Java"
 top: 2
 tags: 
@@ -19,15 +19,20 @@ Neuedu (东软睿道)
 2019.05-07 - 至今  
 <img src="http://ws1.sinaimg.cn/large/006tNc79ly1g2sta9fzrjj303w027glg.jpg" width="200rpx"/>
 
-# 目录
+## Contents 
 - [Day 1 - Day 4AM: MyBatis](#-day-1---day-4am:-mybatis)  
 - [Day 4PM - Day 5: Spring IOC](#-Day-4PM---Day-5:-Spring-IOC)  
 - [Day 6 - Day X: Spring AOP](#Day-6---Day-X:-Spring-AOP) 
 - Learning... 
 
-现仍处于学习阶段，随着学习程度的加深会对现有知识有新的理解以及找寻到更好的参考资料，随时会对笔记进行更新。😋  
-为了获得更优阅读体验，您可移步至我的博客。  
+## Warning
+⚠️**受本人学识所限，本博客的学习意义不大，更多地可作为同期课程同学对课堂知识的一个回顾即课程讲义**  
+现仍处于学习阶段，随着学习程度的加深会对现有知识有新的理解以及找寻到更好的参考资料，随时会对笔记进行更新😋  
+***
+为了获得更优阅读体验，您可移步至我的博客：
 [东软睿道实训杂记](https://ravenxu.top/2019/05/07/%E4%B8%9C%E8%BD%AF%E7%9D%BF%E9%81%93%E5%AE%9E%E8%AE%AD%E6%9D%82%E8%AE%B0/)
+
+
 
 # Day 1 - Day 4AM: MyBatis
 [参考代码](https://github.com/Raven98/Neuedu/tree/master/TestMyBatis)  

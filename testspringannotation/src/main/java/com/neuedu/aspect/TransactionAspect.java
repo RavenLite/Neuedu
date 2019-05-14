@@ -1,10 +1,9 @@
 package com.neuedu.aspect;
 
-import java.sql.Connection;
-
-import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
@@ -12,10 +11,10 @@ import org.springframework.stereotype.Component;
 import com.neuedu.utils.DBUtils;
 
 @Component
-@Aspect
-public class TransactionAspect {
+/*@Aspect*/
+public class TransactionAspect{
 	
-	@Before("execution(* com.neuedu.model.service.AccountService.*(..))")
+/*	@Before("execution(* com.neuedu.model.service.AccountService.*(..))")
 	public void getConnection()
 	{
 		DBUtils.getConnection();
@@ -34,12 +33,46 @@ public class TransactionAspect {
 	{
 		DBUtils.rollbackConnection();
 		DBUtils.closeConnection();
-	}
+	}*/
 	
 	/*@After("execution(* com.neuedu.model.service.AccountService.*(..))")
 	public void closeConnection()
 	{
-		DBUtils.closeConnection();		
+		
 	}*/
-
+	
+	/**
+	 * 
+	 *around advice is very powerfully, it allows you controll your proxy object all by your self.
+	 *
+	 *
+	 */
+	
+	/*@Around("execution(* com.neuedu.model.service.AccountService.*(..))")*/
+	public void process(ProceedingJoinPoint pjp) throws Throwable
+	{
+		DBUtils.getConnection();
+		try
+		{
+			//call our business logic
+			//dao.deductMoney();
+			//dao.addMoney();
+			pjp.proceed();
+			
+			DBUtils.commitConnection();
+		}
+		catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+			DBUtils.rollbackConnection();
+			
+			throw e;
+		}
+		finally
+		{
+			DBUtils.closeConnection();
+		}
+	}
+    
 }

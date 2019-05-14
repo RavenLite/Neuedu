@@ -9,10 +9,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.neuedu.model.dao.AccountDAO;
-import com.neuedu.utils.DBUtils;
 
 @Service
-public class AccountService implements IAccountService{
+public class AccountService{
 	
 
 	@Autowired
@@ -49,8 +48,10 @@ public class AccountService implements IAccountService{
 		  /* try
 		   {*/
 			   /*Connection conn = DBUtils.getConnection(); -> before advice*/
+			   
 			   dao.deductMoney();
 			   dao.addMoney();
+			  
 		   /*}
 		   finally
 		   {
@@ -75,7 +76,7 @@ public class AccountService implements IAccountService{
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-		IAccountService service = (IAccountService)context.getBean("accountService");
+		AccountService service = (AccountService)context.getBean(AccountService.class);
 
 		service.transferMoney();
 

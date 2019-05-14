@@ -1,7 +1,8 @@
 ---
-title: 东软睿道实训杂记
-data: 2018-05-07 10:00:00
+title: 「置顶」东软睿道实训杂记
+date: 2018-05-08 10:00:00
 category: "Java"
+top: 2
 tags: 
     - 东软睿道
     - 实习
@@ -19,15 +20,16 @@ Neuedu (东软睿道)
 <img src="http://ws1.sinaimg.cn/large/006tNc79ly1g2sta9fzrjj303w027glg.jpg" width="200rpx"/>
 
 # 目录
-- Day 1 - Day 3: MyBatis
-- Day 4 - Day 5: Spring IOC
-- Learning...
+- [Day 1 - Day 4AM: MyBatis](#-day-1---day-4am:-mybatis)  
+- [Day 4PM - Day 5: Spring IOC](#-Day-4PM---Day-5:-Spring-IOC)  
+- [Day 6 - Day X: Spring AOP](#Day-6---Day-X:-Spring-AOP) 
+- Learning... 
 
 现仍处于学习阶段，随着学习程度的加深会对现有知识有新的理解以及找寻到更好的参考资料，随时会对笔记进行更新。😋  
 为了获得更优阅读体验，您可移步至我的博客。  
 [东软睿道实训杂记](https://ravenxu.top/2019/05/07/%E4%B8%9C%E8%BD%AF%E7%9D%BF%E9%81%93%E5%AE%9E%E8%AE%AD%E6%9D%82%E8%AE%B0/)
 
-# Day 1 - Day 4: MyBatis
+# Day 1 - Day 4AM: MyBatis
 [参考代码](https://github.com/Raven98/Neuedu/tree/master/TestMyBatis)  
 [MyBatis 英文文档](http://www.mybatis.org/mybatis-3/)  
 [MyBatis 中文文档](http://www.mybatis.org/mybatis-3/zh/getting-started.html)  
@@ -338,13 +340,16 @@ public static void queryByPage() {
 3. MyBatis
    MyBatis作为一个框架，还是对现有接口的封装，可以参考轻量级框架[sql2o](https://www.sql2o.org/)的设计思想自行设计一个框架
 4. 存储过程的使用场景：阿里巴巴Java开发手册明确写明了禁止使用存储过程，究其原因更多是因为存储过程代码可读性极差、debug困难，对于阿里这样的大企业有其他措施弥补性能；对于东软这样的外包公司，如果是一个**需求明确**的任务还是可以写存储过程的，毕竟因为存储过程在数据库内一次性完成多个操作性能会更好。
-# Day 4 - Day 5: Spring IOC
+
+
+# Day 4PM - Day 5: Spring IOC
 
 ## 参考资料
 - [参考代码(基于XML)](https://github.com/Raven98/Neuedu/tree/master/SpringCore)  
 - [参考代码(基于注解)](https://github.com/Raven98/Neuedu/tree/master/testspringannotation)  
 - [Spring官方文档](https://docs.spring.io/spring/docs/5.1.6.RELEASE/spring-framework-reference/core.html)  
 - [费老师著作](https://www.kancloud.cn/winter1981/spring/543484)
+
 ## 1. 了解Spring IOC
 ### 1.1. IOC: invertion of control
 #### Demo for IOC
@@ -408,19 +413,16 @@ IOC的目的是要让Sring来创建我们所需要的对象，不需要通过new
 [反射破坏单例的私有构造函数保护](https://blog.csdn.net/tiwerbao/article/details/20838903)  
 帮助理解Spring为何能做到这点
 ### 2.3. 三种构造方法(告诉Spring怎样构建对象)
-1. 直接调用Constructor(Instantiation with a Constructor)
+#### 2.3.1. 直接调用Constructor(Instantiation with a Constructor)
 ```xml
 <bean id="testDAO" class="testspringcore.TestDAO">
 </bean>
 ```
 最普通的方法，默认新建单例模式的对象，标签内增加`scope="prototype"`可以允许新建多个实例。
-Spring会在最初的
-`
-ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-`
+Spring会在最初的`ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");`
 步骤自动创建所有被注册的单例模式的Java bean，标签内增加`lazy-init="true"`则指定在需要时在创建。  
 
-2. 绑定getInstance() (Instantiation with a Static Factory Method)
+#### 2.3.2. 绑定getInstance() (Instantiation with a Static Factory Method)
 ```xml
 <bean id="testBean" class="testspringcore.TestBean" factory-method="getInstance" scope="prototype">
 </bean>
@@ -446,7 +448,7 @@ public class TestBean {
     }
 }
 ```
-3. 绑定Factory.class (Instantiation by Using an Instance Factory Method)
+#### 2.3.3. 绑定Factory.class (Instantiation by Using an Instance Factory Method)
 ```xml
 <!-- register factory bean -->
 <bean id="testBean2Factory" class="testspringcore.TestBean2Factory"></bean>
@@ -641,6 +643,7 @@ private Map<String, String> map;
 - @Repository -> DAO  
   用于标注数据访问组件，即DAO组件
 *@Component泛指所有组件，其他三个是拥有特殊语义的注解*
+*Spring鼓励使用其他三个更具有语义化的注解，会在日后支持提供feature*
 
 #### 3.2.1. demo
 *applicationContext.xml*
@@ -766,17 +769,33 @@ MVC是所有web项目为了实现“高内聚，低耦合”应遵循的模式�
 - AOP: Aspect-Oriented Programming: 面向切面编程  
   分布于应用中多处的功能称为横切关注点，通过这些横切关注点在概念上是与应用的业务逻辑相分离的，但其代码往往直接嵌入在应用的业务逻辑之中。将这些横切关注点与业务逻辑相分离正是面向切面编程（AOP）所要解决的。切面实现了横切关注点的模块化  
   一句话概括：切面是跟具体业务无关的一类共同功能。
-- advice
-- pointcut
-- weaving
+- advice: 通知
+- pointcut: 切入点
+- weaving: 织入
 
 ## 2. 配置
+这里我们不用xml用注解配置，例如`@Before("execution(* com.neuedu.model.service.AccountService.*(..))")`
 ### 2.1. @Before
 ### 2.2. @AfterReturning
 ### 2.3. @AfterThrowing
+业务方法一定要抛出异常（try catch throw / throws）皆可，否则`@AfterThrowing`注解无法起作用。
 ### 2.4. @After
 ### 2.5. 执行顺序探究
-篇幅过程，稍后更新
+```java
+try{
+    try{
+        //@Before
+        method.invoke(..);
+    }finally{
+        //@After
+    }
+    //@AfterReturning
+}catch(){
+    //@AfterThrowing
+}
+```
+`@After`和`@AfterReturning`注解的执行顺序以及生成的动态代理类结果在新版本中有变化，有待进一步探究。
+[aop after-returning 和after的区别？](http://www.imooc.com/qadetail/75298)
 
 ## 3.Demo
 JDBC事务处理是经常使用AOP的一个典型事例（其他还有诸如日志等），我们举例对比使用AOP前后代码量与代码结构的变化。
@@ -872,6 +891,8 @@ public class DBUtils {
 	}
 }
 ```
+使用`ThreadLocal`：保证连接是共享的，同一个连接
+
 *Service类 Service.java*
 ```java
 @Service
@@ -996,15 +1017,239 @@ class MyService
 - Aspectj修改.class文件
 - Spring AOP依赖IOC
 
+## 4. @Around
+利用`@Around`我们可以显式地指明语句插入的位置，利用`@Around`代替上面的四个注解完成JDBC事务管理如下：
+*TranscationAspect.java*
+```java
+	@Around("execution(* com.neuedu.model.service.AccountService.*(..))")
+	public void process(ProceedingJoinPoint pjp) throws Throwable {
+		DBUtils.getConnection();
+		try {
+			pjp.proceed();
 
-## 4.思考
-### 4.1. 补充知识点
+			DBUtils.commitConnection();
+		} catch (Throwable e) {
+			System.out.println(e);
+
+			DBUtils.rollbackConnection();
+
+			throw e;
+		} finally {
+			DBUtils.closeConnection();
+		}
+	}
+```
+我们可以看到，这和前四个注解共同使用的实现逻辑类似，其中传入参数`ProceedingJoinPoint pjp`代表切入点
+```java
+try{
+    try{
+        //@Before
+        method.invoke(..);
+    }finally{
+        //@After
+    }
+    //@AfterReturning
+}catch(){
+    //@AfterThrowing
+}
+```
+只不过利用`@Around`注解我们手动实现了其中的 try, finally, catch关系，这有助于我们更好地理解AOP切入的位置。
+
+## 5. XML配置
+下面再来尝试不用注解用XML配置切面  
+使用场景
+- 用了jar包里的Aspect类
+- xml配置便于集中管理
+
+```java
+@Component
+public class LogAspect {
+	
+	public void before()
+	{
+		//before the method executes:
+		System.out.println("methods before");
+	}
+	
+	public void after()
+	{
+		//after the method executes:
+		System.out.println("methods after");
+	}
+	
+	public void afterthrowing()
+	{
+		System.out.println("methods exception");
+	}
+
+	public void afterreturnning()
+	{
+		System.out.println("methods runs without exception");
+	}
+}
+```
+
+## 6. Advisor顾问
+Advisor顾问：只有一个方法的Aspect切面  
+（因为`@Around`很流行，使用很多切面类里只有一个方法，如果一个切面只有一个advice，我们叫它advisor。）
+### 6.1. 配置方法
+```xml
+<aop:config>
+    <aop:advisor advice-ref="transactionAdvisor" pointcut="execution(* com.neuedu.model.service.AccountService.*(..))"/>
+</aop:config>
+```
+```java
+@Component
+public class TransactionAdvisor implements MethodInterceptor {
+	/**
+	 * because a advisor only have one advice, to specify the type of the advice, 
+	 * you must implements different interface.
+	 * 
+	 * because we must implement a interface, this is called invasive design（侵入式设计） 
+	 * which is actually not good.
+	 */
+
+	@Override
+	public Object invoke(MethodInvocation arg0) throws Throwable {
+		
+		DBUtils.getConnection();
+		try
+		{
+			//call our business logic
+			//dao.deductMoney();
+			//dao.addMoney();
+			arg0.proceed();
+			
+			DBUtils.commitConnection();
+		}
+		catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+			DBUtils.rollbackConnection();
+			
+			throw e;
+		}
+		finally
+		{
+			DBUtils.closeConnection();
+		}
+		
+		return null;
+	}
+}
+
+```
+通过实现接口代表是哪一种切面
+### 6.2. 优点
+- 配置简化
+- 便于使用第三方切面
+
+### 6.3. 小结
+这体现了框架是在不断演变的，框架设计者也在不断根据用户使用情况及反馈调整框架的设计。如此例，设计者发现很多只有一个方法的切面类也需要繁琐的
+配置因而引入了顾问的概念帮助简化这些只有一个方法的切面的配置。  
+各种主流框架一般都支持xml配置和注解配置，xml配置和注解配置是两套并行的配置方法。Java在5.0版本中引入了注解，之后注解迅速流行，但是对于
+一些早期项目，考虑到项目稳定性以及团队成员的学习问题还更喜欢xml，当然xml配置也有自身的有点，在上面提到过最显著的两点。
+
+## 7. MyBatis + Spring
+**核心问题：**MyBatis实现IOC由Spring创建并控制
+>数据库连接池
+
+### 7.1. 分析配置文件
+由配置文件即可看出配置的思想：配置SqlSession Fac
+*applicationContext.xml*
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        https://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!--注明通过注解来配置AOP-->
+    <context:annotation-config/>
+    <context:component-scan base-package="com.neuedu.model.service"></context:component-scan>
+    
+    <!-- to enable AOP aspect weave -->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+    
+    <!-- connect spring with mybatis -->
+    <!-- 配置数据源，类似于属性文件，下面会用到 -->
+    <bean id="ds" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/scott"/>
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>
+	
+    <!-- (1) -->
+	<!-- configure MyBatis sessionFactory -->
+	<!-- 配置MyBatis的sessionFactory，将其交由Spring管理 -->
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 加载mybatis的主配置文件 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+		<!-- 注入数据源 -->
+		<property name="dataSource" ref="ds" />
+	</bean>
+	
+    <!-- (2) -->
+	<!-- tell Spring about Mapper information -->
+	<!-- MyBatis: 指定mapper，即可用的DAO方法 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 指定扫描的包名，如果扫描多个包，每个包中间使用半角逗号分隔-->
+		<property name="basePackage" value="com.neuedu.model.mapper"/>
+		<!-- 自动创建session（connection）去数据库交互 -->
+		<property name="sqlSessionFactoryBeanName" value="sessionFactory"/>
+	</bean>
+	
+    <!-- (3) -->
+    <!-- 以下为Spring AOP的配置 -->
+	<!-- configure Spring transaction manager which is a advisor -->
+	<!-- 配置AOP，该事务AOP由Spring提供 -->
+	<bean id="txm" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ds" />
+	</bean>
+	
+	<!-- if we want to use annotation to control transaction -->
+	<!-- 指定利用注解的方式配置 -->
+	<tx:annotation-driven transaction-manager="txm"/>
+
+</beans>
+```
+分析利用Spring来管理MyBatis的配置文件需要回想之前手动管理MyBatis的步骤
+- (1) 配置MyBatis的sessionFactory
+之前我们采用如下方式新建sessionFactory
+```java
+String resource = "mybatis-config.xml";
+InputStream inputStream;
+SqlSession session = null;
+try {
+    // 1. Create a sqlsessionFactory
+    inputStream = Resources.getResourceAsStream(resource);
+    SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+}
+```
+- (2) 指定可以使用的mapper实现
+- (3) 配置Spring AOP
+**这其中，之前由我们手写的例如TransactionManager切面类等都由Spring提供的类来实现！配置一次后其他的使用就很简单了！**  
+**初次接触配置文件可能比较陌生，想要理解好要回想不用Spring框架我们要做哪些工作**
+
+## 8. 其他
+### 8.1. 补充知识点
 - 判断是否是同一个对象：打印对象地址。
 
 - 什么时候把类加载到内存？三种情况：
   - new类的对象
   - 调用类的静态方法
-  - Class.forName("");
+  - `Class.forName("");`
 
 - JDBC事务
   >事务是必须满足4个条件（ACID）
@@ -1016,3 +1261,16 @@ class MyService
 - DML
   SQL分为DML数据库操纵语言（SELECT INSERT DELETE UPDATE）和DDL数据库定义语言（创建表时的一些定义操作ALTER等）  
   JDBC默认自动提交，即`executeUpdate()`后自动执行了commit()。但是我们想保持数据库的原子性，所以在上面通过`conn.setAutoCommit(false);`禁用自动提交。禁用后支持`rollback()`回滚操作及`rollback(Savepoint savepoint) `回滚到固定位置。数据库在`commit()`前都没被真正改变，都能通过`rollback()`撤销之前做的`executeUpdate()`操作。数据库应该只是有一个临时的镜像而已。COMMIT命令用于把事务所做的修改保存到数据库。
+
+### 8.2. 再议错误处理
+- try catch
+  自行处理
+- throws
+  交给上级处理
+- try catch + throw
+  自行处理+通知上级发生过异常
+
+不能在主方法里向上抛出异常
+
+### 8.3. Context
+努力实现单位代码量包含更多Context

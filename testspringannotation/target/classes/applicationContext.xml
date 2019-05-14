@@ -22,4 +22,39 @@
     <context:component-scan base-package="com.neuedu.aspect"></context:component-scan>
 
 
+    <!-- because around advice is very powerful, it is used very often, inside one aspect, 
+         this is only one methond
+    
+         in this case, only specify aspect and pointcut is enough
+         
+         if a aspect only have one advice(before, around...), we can call it advisor
+         
+         for the configuration, only specify aop:advisor and aop:pointcut
+    
+     -->
+    
+	<aop:config>
+	    <aop:aspect id="logAspect" ref="logAspect">	
+	        <aop:pointcut id="logpc"
+	            expression="execution(* com.neuedu.model.service.*.*(..))"/>
+
+            <aop:before pointcut-ref="logpc" method="before"/>       
+	        <aop:after-returning pointcut-ref="logpc" method="afterreturnning"/>	     
+	        <aop:after-throwing pointcut-ref="logpc" method="afterthrowing"/> 
+	        <aop:after pointcut-ref="logpc" method="after"/>
+	      
+	    </aop:aspect>  
+	</aop:config>
+	
+	<!-- config advisor -->
+	<aop:config>
+	
+	   <aop:advisor advice-ref="transactionAdvisor" pointcut="execution(* com.neuedu.model.service.AccountService.*(..))"/>
+	
+	</aop:config>
+	
+	
+	
+	
+	
 </beans>

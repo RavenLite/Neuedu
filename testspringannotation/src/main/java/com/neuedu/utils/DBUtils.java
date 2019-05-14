@@ -11,14 +11,14 @@ import java.sql.SQLException;
  */
 public class DBUtils {
 	
-	private static ThreadLocal<Connection> tl = new ThreadLocal<>();
+	private static ThreadLocal<Connection> tl = new ThreadLocal<Connection>();
 	
 	//this static block automatically runs when DBUtils is loaded into memory
 	static
 	{
 		//load the database connector
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

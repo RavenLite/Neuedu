@@ -8,20 +8,20 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 @Component
-@Aspect
+/*@Aspect*/
 public class LogAspect {
 	
 	/**
 	 * AOP: many concepts, 
 	 * 
-	 * advice(??): before, after(finally), after-throwing(works in case of exception), after-returning(works when this is no exception), around(in spring, it is always a method in a aspect)
+	 * advice(): before, after(finally), after-throwing(works in case of exception), after-returning(works when this is no exception), around(in spring, it is always a method in a aspect)
 	 * 
 	 * after-throwing and after-returning, there are mutually exclusive
 	 * 
 	 * 
-	 * pointcut(?????):specifies which methods the advice should be weaved
+	 * pointcut():specifies which methods the advice should be weaved
 	 * 
-	 * weaving(???):the behavior of cutting into other methods
+	 * weaving(֯):the behavior of cutting into other methods
 	 * 
 	 * 
 	 */
@@ -30,14 +30,14 @@ public class LogAspect {
 	execution(* com.neuedu.model.service.*.*(..)) 
 	stands for the before method will be weaved into all methods under classes of com.neuedu.model.service 
 	*/
-	@Before("execution(* com.neuedu.model.service.*.*(..))")
+	/*@Before("execution(* com.neuedu.model.service.*.*(..))")*/
 	public void before()
 	{
 		//before the method executes:
 		System.out.println("methods before");
 	}
 	
-	@After("execution(* com.neuedu.model.service.*.*(..))")
+	/*@After("execution(* com.neuedu.model.service.*.*(..))")*/
 	public void after()
 	{
 		//after the method executes:
@@ -45,14 +45,14 @@ public class LogAspect {
 	}
 	
 	
-	@AfterThrowing("execution(* com.neuedu.model.service.*.*(..))")
+	/*@AfterThrowing("execution(* com.neuedu.model.service.*.*(..))")*/
 	public void afterthrowing()
 	{
 		System.out.println("methods exception");
 	}
 	
 	
-	@AfterReturning("execution(* com.neuedu.model.service.*.*(..))")
+	/*@AfterReturning("execution(* com.neuedu.model.service.*.*(..))")*/
 	public void afterreturnning()
 	{
 		System.out.println("methods runs without exception");

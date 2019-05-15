@@ -1,3 +1,4 @@
+
 <img src="http://ws1.sinaimg.cn/large/006tNc79ly1g30xqf7vbvj3080037aa7.jpg" width="200rpx"/>   
 
 # Introduction
@@ -6,9 +7,10 @@
 - 背景：软件学院大三下学期9学分[企业项目实训](http://sc.neu.edu.cn/2019/0328/c99a90425/page.htm)
 
 ## Contents 
-- [Day 1 - Day 4: MyBatis](#day-1---day-4-mybatis)
+- [Day 1 - Day 3: MyBatis](#day-1---day-3-mybatis)
 - [Day 4 - Day 5: Spring IOC](#day-4---day-5-spring-ioc)
-- [Day 6 - Day X: Spring AOP](#day-6---day-x-spring-aop) 
+- [Day 6 - Day 7: Spring AOP](#day-6---day-7-spring-aop) 
+- [Day 8 - Day X: Spring MVC](#day-8---day-x-spring-mvc)
 - Learning...
 
 ## Warning
@@ -23,11 +25,12 @@ git clone https://github.com/Raven98/Neuedu.git
 为了获得更优阅读体验，您可移步至我的博客：
 [东软睿道实训杂记](https://ravenxu.top/2019/05/07/%E4%B8%9C%E8%BD%AF%E7%9D%BF%E9%81%93%E5%AE%9E%E8%AE%AD%E6%9D%82%E8%AE%B0/)
 
-# Day 1 - Day 4: MyBatis
+# Day 1 - Day 3: MyBatis
 - [参考代码](https://github.com/Raven98/Neuedu/tree/master/TestMyBatis)
 - [MyBatis 英文文档](http://www.mybatis.org/mybatis-3/)
 - [MyBatis 中文文档](http://www.mybatis.org/mybatis-3/zh/getting-started.html)  
 *本文内容很大程度地参考了官方文档，mybatis有中文版本的文档并且极其简洁，推荐阅读*
+
 ## 1. 了解MyBatis
 - 优秀的持久层框架
 - 支持定制化 SQL、存储过程以及高级映射
@@ -733,7 +736,7 @@ public class TestController {
 #### 3.3.1. 框架设计原则：约定优于配置  
    例如约定bean默认不延迟加载。事无巨细的配置降低了框架的便利性。
 #### 3.3.2. MVC  
-   <img src="https://ws3.sinaimg.cn/large/006tNc79ly1g2w91nprxrj31000mewkd.jpg" width="500rpx"/>   
+   <img src="http://ws3.sinaimg.cn/large/006tNc79ly1g2w91nprxrj31000mewkd.jpg" width="500rpx"/>   
 
 MVC是所有web项目为了实现“高内聚，低耦合”应遵循的模式。  
 
@@ -755,9 +758,8 @@ MVC是所有web项目为了实现“高内聚，低耦合”应遵循的模式�
 
 **依赖注入 == 控制反转**
 
-# Day 6 - Day X: Spring AOP
+# Day 6 - Day 7: Spring AOP
 ## 1. 了解AOP
-
 ### 1.1. 名词解释
 - AOP: Aspect-Oriented Programming: 面向切面编程  
   分布于应用中多处的功能称为横切关注点，通过这些横切关注点在概念上是与应用的业务逻辑相分离的，但其代码往往直接嵌入在应用的业务逻辑之中。将这些横切关注点与业务逻辑相分离正是面向切面编程（AOP）所要解决的。切面实现了横切关注点的模块化  
@@ -1175,7 +1177,7 @@ public class TransactionAdvisor implements MethodInterceptor {
     <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
     
     <!-- connect spring with mybatis -->
-    <!-- 配置数据源，类似于属性文件，下面会用到 -->
+    <!-- 配置数据源，类似于属性文件，下面会用到，使用了dbcp2数据连接池 -->
     <bean id="ds" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/scott"/>
@@ -1235,7 +1237,7 @@ try {
 **这其中，之前由我们手写的例如TransactionManager切面类等都由Spring提供的类来实现！配置一次后其他的使用就很简单了！**  
 **初次接触配置文件可能比较陌生，想要理解好要回想不用Spring框架我们要做哪些工作**
 
-## 8. 其他
+## 8. 总结
 ### 8.1. 补充知识点
 - 判断是否是同一个对象：打印对象地址。
 
@@ -1257,7 +1259,7 @@ try {
 
 - joinpoint & pointcut
   连接点joinpoint指方法的执行，pointcut指定位到一堆连接点
-### 8.2. 再议错误处理
+### 8.2. 再议异常处理
 - try catch
   自行处理
 - throws
@@ -1265,7 +1267,43 @@ try {
 - try catch + throw
   自行处理+通知上级发生过异常
 
-不能在主方法里向上抛出异常
+如果想使`@AfterThrowing`起作用就不要手动try catch处理了异常~ 不过如果在catch里处理完再throw也是可以的
 
-### 8.3. Context
-努力实现单位代码量包含更多Context
+不能在主方法里向上抛出异常，不是好的代码
+
+### 8.3. 数据库连接池
+7.1中的`ds bean`使用了dbcp2数据库连接池，下面我们简单介绍一下数据库连接池。戳下面的链接    
+- [参考资料](https://ravenxu.top/2019/05/15/%E5%88%9D%E6%8E%A2%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/)
+
+### 8.4. 一点想法
+在实现了Spring+MyBatis整合配置后，我惊讶的发现项目代码量减少很多，主要原因是常用的类
+都交由Spring内置的类实现了，所以如果我们直接学习内置类使用的话就很难理解深层次的细节问题，所以还是得从头学起，了解JDBC和MyBatis的差异，了解Spring IOC怎样作为容器管理实例，了解Spring AOP怎样实现动态代理。  
+举例说明项目代码量减少，我们最后的项目不用手写数据库事务管理类，二是用了Spring提供的`org.springframework.jdbc.datasource.DataSourceTransactionManager`类，这主要是因为AOP的主流使用场景就固定那几种，Spring作为一个好用的框架自然无死角的帮助开发者少做工作，懒惰是推动技术进步的动力哈哈。
+
+**高效学习框架知识：注重阅读文档，兼而学习底层知识。**
+
+# Day 8 - Day X: Spring MVC
+## 1. Spring MVC介绍
+### 1.1 回想
+回想之前我们学习的三个技术，加上今天要学习的Spring MVC，共同组成了一个web项目要使用的基本框架。  
+这四个技术分别应用的MVC模型中的如下部分：
+- Spring MVC: Controller Layer
+- Spring IOC: All
+- Spring AOP: Service Layer
+- MyBatis: mapper
+
+<img src="http://ws4.sinaimg.cn/large/006tNc79ly1g31razzyhxj30zw0m8418.jpg" width="500px"/> 
+
+### 1.2 DispatcherServlet
+之前做的项目就总遇到`DispatcherServlet`的保错，这次来深入了解一下什么是`DispatcherServlet`
+
+## 2. 环境配置 + Hello world demo
+
+## 3. 路径与参数传递
+### 3.2 比较int与Integer
+对于可选参数
+### 3.3 静态资源
+伪装  
+处于对安全因素的考量（/WEB-INF文件夹下），但是可以通过路径跳转到此
+
+### 3.4 Rest风格的变量参数

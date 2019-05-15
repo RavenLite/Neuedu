@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+</head>
+<body>
+        <div id="app">
+           <input type="text" v-model="username"/>
+           <input type="password" v-model="password"/>
+           <button type="submit" v-on:click="login">signin</button>
+        </div>
+
+        <script src="./login.js"></script>
+</body>
+</html>

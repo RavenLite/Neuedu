@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        https://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <context:annotation-config/>
+    
+    <context:component-scan base-package="com.neuedu.model.service"></context:component-scan>
+    
+    <!-- to enable AOP aspect weave -->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+    
+    <!-- connect spring with mybatis -->
+    <!-- configure datasource -->
+    <bean id="ds" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/scott?useUnicode=true&amp;characterEncoding=utf8"/>
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>
+	
+	<!-- configure MyBatis sessionFactory -->
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 加载mybatis的主配置文件 -->
+		<property name="configLocation" value="/WEB-INF/mybatis-config.xml"/>
+		<!-- 注入数据源 -->
+		<property name="dataSource" ref="ds" />
+	</bean>
+	
+	<!-- tell Spring about Mapper information -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 指定扫描的包名
+		如果扫描多个包，每个包中间使用半角逗号分隔
+		-->
+		<property name="basePackage" value="com.neuedu.model.mapper"/>
+		<!-- 自动创建session（connection）去数据库交互 -->
+		<property name="sqlSessionFactoryBeanName" value="sessionFactory"/>
+	</bean>
+	
+	<!-- configure Spring transaction manager which is a advisor -->
+	<bean id="txm" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ds" />
+	</bean>
+	
+	<!-- if we want to use annotation to control transaction -->
+	<tx:annotation-driven transaction-manager="txm"/>
+
+</beans>

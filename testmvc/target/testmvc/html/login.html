@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 
+   full path: http://localhost:8080/testmvc/login
+   
+   relative path:
+           current url:http://localhost:8080/testmvc/html/login.html
+           targert url:http://localhost:8080/testmvc/test/login
+           
+           
+           action="../login"
+           
+           
+           current url:http://localhost:8080/testmvc/login.html
+           targert url:http://localhost:8080/testmvc/login
+           
+           action="login"
+ -->
+        <form action="../test/login" method="post">
+           <input type="text" name="username" />
+           <input type="password" name="password" />
+           <button type="submit">sigin</button>        
+        </form>
+</body>
+</html>

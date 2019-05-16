@@ -1292,18 +1292,342 @@ try {
 - Spring AOP: Service Layer
 - MyBatis: mapper
 
+### 1.2 概述
+Spring MVC工作在控制层， 替代的是servlet  
+Servlet不好的地方：
+1. 一个请求对应一个servlet, servlet类的数量特别多
+2. 处理请求参数麻烦  
+   - request.getParameter()
+   - 手动新建对象
+  ```java
+  User u = new User();
+  u.setxx();
+  u.setxxx();
+  
+  MyService.addUser(u);
+  ```
+
 <img src="http://ws4.sinaimg.cn/large/006tNc79ly1g31razzyhxj30zw0m8418.jpg" width="500px"/> 
 
-### 1.2 DispatcherServlet
+### 1.3 DispatcherServlet
 之前做的项目就总遇到`DispatcherServlet`的保错，这次来深入了解一下什么是`DispatcherServlet`
+请求到达服务器后，Tomcat创建request对象给`DispatcherServlet`，request对象包含客户端的所有信息，`DispatcherServlet`
+再把request传给controller和jsp文件。controller和jsp使用同一个request，因而`controller`可以利用request暂存数据传值
+给jsp文件。例子见下方3.4  
+另外Tomcat还会自动创建response对象。  
+作用域：request, session, application等
 
 ## 2. 环境配置 + Hello world demo
+*web.xml*
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="WebApp_ID" version="3.0">
+    <display-name>testmvc</display-name>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.htm</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>default.html</welcome-file>
+        <welcome-file>default.htm</welcome-file>
+        <welcome-file>default.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- configure listenner -->
+    <!-- 设置监听器，即一旦监测到Tomcat启动，则创建Spring容器(现在的主函数在Tomcat里！所以我们没有办法手动创建Spring容器) -->
+    <!-- purpose of listenning, listen the startup of tomcat, the listener runs when tomcat startup -->
+    <!-- ContextLoaderListener initialize spring container -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/applicationContext.xml</param-value>
+    </context-param>
+
+    <!-- register Dispatcher servlet, this servlet gets all requests from user, and then decide which java file should handle this request -->
+    <!-- 每次的request和response由DispatcherServlet承载 -->
+    <servlet>
+        <servlet-name>app</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/springmvc.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>app</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <!-- 过滤器，防止中文乱码 -->
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+</web-app>
+```
 
 ## 3. 路径与参数传递
+### 3.1 普通传参
+```java
+@RequestMapping("/login")
+public String test(String username,String password)
+{		
+    //invoke service method to query database.
+    System.out.println(username);
+    System.out.println(password);
+    
+    session.setAttribute("userinfo", username);
+            
+    return "/index.jsp";
+}
+```
 ### 3.2 比较int与Integer
-对于可选参数
+对于可选参数，若为传参使用int会报错，而Integer会设置没传过来的可选的参数为null
+
 ### 3.3 静态资源
-伪装  
-处于对安全因素的考量（/WEB-INF文件夹下），但是可以通过路径跳转到此
+伪装：可以把路径名设置为`login.html`等，以为是请求一个html文件，实则是一个路径  
+出于对安全因素的考量`/WEB-INF`文件夹下的文件是不可以被直接访问的，但是可以通过路径跳转到此
 
 ### 3.4 Rest风格的变量参数
+`@RequestMapping("/rest/{username}/{password}")`
+
+### 3.5 参数为对象
+自动映射
+
+### 3.4 向页面返回信息
+#### 3.4.1 vo与po
+vo与po
+- po: posistent object
+- vo: value object
+vo与po分离是比较好的策略，但是对于mybatis不分离也可以。但是hibernate这种全自动框架(不需要写sql语句)必须分离。
+po对应数据库表，对于po的date类型，前端页面不能直接显示（格式问题），有两种解决方案
+1. 对于jsp使用java做转换，对于html使用js做转换
+2. 定义两个字段（常用）
+
+vo和po分离： 页面显示的内容和数据库的内容和数据类型不一定一致，应该采用不同的对象。
+- dto(vo), data transfer object 数据传输对象，对应页面
+- bo(po)，business object 业务对象，对应数据库
+
+当使用了mybatis或者是hibernate这样的框架时，习惯使用以下说法：
+- vo: value object 值对象，对应页面
+- po: persistent object 持久化对象，对应数据库
+
+- vo: 对应页面：String birthday
+- po: 对应数据库： Date birthday
+
+View(vo) -> Controller(vo) -> Service(vo<->po) -> Mapper(po)
+
+#### 3.4.2 el jstl JSP标签库
+多端项目前后端分离vs企业级单PC端项目
+
+#### 3.4.3 forward vs redirect
+- forward：请求转发
+- redirect：请求重定向  
+请求重定向可以跳转到别的网站的页面  
+【经验谈】能不用请求转发就不用请求转发。  
+以注册页面-->结果页为例，若用户在结果页刷新，注册请求被重新提交了一次，会造成数据库重复记录（请求转发情况下即便返回新页面，但是地址栏的url还是不变的）  
+在ajax下没有请求转发和请求重定向的概念。
+
+<img src="http://ws4.sinaimg.cn/large/006tNc79ly1g330cngueqj30z00ju43n.jpg" width="500px" />
+
+#### 3.4.4 request与session
+request的作用域太小，我们需要使用session使用户保持长时间身份认证。
+
+#### 3.4.5 上传文件
+*springmvc.xml*新增
+```xml
+<!-- 用于处理请求参数里有文件的情况 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+```
+
+Spring考虑得极其周全，它知道传文件这样一个使用场景，所以和之前我们用的类似数据库事务类一样，提供了文件处理类`MultipartFile`
+```java
+@PostMapping("/register")
+public String register(User u, MultipartFile photo)
+{
+    System.out.println(u.getUsername());
+    System.out.println(u.getPassword());
+    
+    //the photo we have this is location somewhere in your temparary folder.
+    //put it in D://
+    File destination = new File("/Users/raven/Downloads/test",photo.getOriginalFilename());
+    try {
+        photo.transferTo(destination); //after transfer to the destination, the temparary file will be deleted automatically.
+    } catch (IllegalStateException | IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+    
+    return "/index.jsp";
+}
+```
+
+## 4. 拦截器
+### 4.1 案例一：未登录，不能访问系统页面
+*AdminInterceptor.java*
+```java
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+public class AdminInterceptor implements  HandlerInterceptor{
+
+    @Override
+    public void afterCompletion(HttpServletRequest httpRequest,
+                                HttpServletResponse httpResponse, Object arg2, Exception arg3)
+            throws Exception {
+
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1,
+                           Object arg2, ModelAndView arg3) throws Exception {
+    }
+
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
+                             Object object) throws Exception {
+        HttpSession session = request.getSession();
+        if (session!= null){
+            if (session.getAttribute("isLogin")!=null){
+                if (session.getAttribute("isLogin").equals("Yes")){
+                    return  true;
+                }
+            }
+        }
+
+        request.getRequestDispatcher("/back/admin_login.jsp").forward(request,response);
+        return false;
+    }
+
+}
+```
+*springmvc.xml*
+```xml
+<mvc:interceptors>
+    <mvc:interceptor>
+    <mvc:mapping path="/Admin/*"/>
+    <!--<mvc:exclude-mapping path="/admin/*"/>-->
+    <bean class="com.neuedu.tools.AdminInterceptor"></bean>
+    </mvc:interceptor>
+</mvc:interceptors>
+```
+
+### 4.2 案例二：解决前后端分离开发中的ajax跨域访问问题
+*AccessControllAllowInterceptor.java*
+```java
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+public class AccessControllAllowInterceptor implements HandlerInterceptor {
+
+	@Override
+	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
+			throws Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3)
+			throws Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean preHandle(HttpServletRequest arg0, HttpServletResponse response, Object arg2) throws Exception {
+		
+        //CROS
+		 response.addHeader("Access-Control-Allow-Origin", "*");
+         
+         response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
+		
+		return true;
+	}
+}
+```
+*springmvc.xml*
+```xml
+<mvc:interceptors>
+    <!-- 跨域访问 -->
+    <mvc:interceptor>
+        <mvc:mapping path="/*"/>
+        <bean class="com.lamport.education.interceptor.AccessControllAllowInterceptor"></bean>
+    </mvc:interceptor>
+</mvc:interceptors>
+```
+### 4.3 附录：关于跨域
+1. 什么是跨域？
+   跨域是指从一个域名的网页去请求另一个域名的资源。比如从www.baidu.com 页面去请求 www.google.com 的资源。跨域的严格一点的定义是：只要 协议，域名，端口有任何一个的不同，就被当作是跨域
+
+2. 为什么浏览器要限制跨域？
+   原因就是安全问题：如果一个网页可以随意地访问另外一个网站的资源，那么就有可能在客户完全不知情的情况下出现安全问题。比如下面的操作就有安全问题：  
+   用户访问www.mybank.com ，登陆并进行网银操作，这时cookie啥的都生成并存放在浏览器  
+   用户突然想起件事，并迷迷糊糊地访问了一个邪恶的网站 www.xiee.com  
+   这时该网站就可以在它的页面中，拿到银行的cookie，比如用户名，登陆token等，然后发起对www.mybank.com 的操作。  
+   如果这时浏览器不予限制，并且银行也没有做响应的安全处理的话，那么用户的信息有可能就这么泄露了。  
+3. 为什么要跨域？
+   既然有安全问题，那为什么又要跨域呢？ 有时公司内部有多个不同的子域，比如一个是location.company.com ,而应用是放在app.company.com , 这时想从 app.company.com去访问 location.company.com 的资源就属于跨域。
+
+## 5. SSM整合
+### 5.1 步骤
+1. 新建一个web工程
+2. 建立mvc包结构
+   - com.neuedu.controllers
+   - com.neuedu.model.service
+   - com.neuedu.model.mapper
+   - com.neuedu.model.po
+3. 添加3个框架的jar包
+4. 添加mybatis的功能
+   - 建立接口和xml
+   - 编写myBatis配置文件 SqlMapConfig.xml
+5. 添加springmvc的功能
+   - springmvc配置文件 springmvc.xml
+   - web.xml(配置前端控制器，配置字符编码过滤器)
+6. 添加spring的功能
+   - 编写spring的配置文件 applicationContext.xml
+     - 配置数据库源和session工厂
+     - 配置service和mapper
+     - 配置事务管理
+   - web.xml(配置监听器，启动spring容器)
+     ```xml
+     <!-- 配置监听器（启动spring容器） -->
+     <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext.xml</param-value>
+     </context-param>
+     <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+     </listener>
+     ```
+     >Tomcat启动完成以后，自动启动Spring容器
+     监听器（Listener）- 监听application作用域的创建
+     监听器监听作用域（request, session, application）
+
+### 5.2 注意
+1. controller配置文件不和service所在的`applicationContext.xml`在一起（spring mvc相对spring来说相当于一个更小的容器）
+2. tomcat将项目发布到某一个指定位置，可以看一下Tomcat文件夹以便对web项目整体有更深理解，例如什么时候需要重启一下Tomcat

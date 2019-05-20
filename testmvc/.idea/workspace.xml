@@ -7,54 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dea9a520-3a97-4b8c-bb0a-3f083fc42578" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../mybatisspring/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatisspring/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/src/main/java/com/neuedu/controller/TestController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/src/main/webapp/WEB-INF/springmvc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/src/main/webapp/html/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/src/main/webapp/html/login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/src/main/webapp/html/login_ajax.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/src/main/webapp/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/classes/WEB-INF/springmvc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/classes/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/classes/com/neuedu/controller/TestController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/classes/html/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/classes/html/login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/classes/html/login_ajax.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/classes/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc.war" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/WEB-INF/classes/WEB-INF/springmvc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/WEB-INF/classes/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/WEB-INF/classes/com/neuedu/controller/TestController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/WEB-INF/classes/html/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/WEB-INF/classes/html/login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/WEB-INF/classes/html/login_ajax.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/WEB-INF/classes/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/WEB-INF/lib/junit-3.8.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/WEB-INF/lib/spring-aop-5.1.6.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/WEB-INF/lib/spring-beans-5.1.6.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/WEB-INF/lib/spring-context-5.1.6.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/WEB-INF/lib/spring-core-5.1.6.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/WEB-INF/lib/spring-expression-5.1.6.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/WEB-INF/lib/spring-jcl-5.1.6.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/WEB-INF/lib/spring-web-5.1.6.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/WEB-INF/lib/spring-webmvc-5.1.6.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/WEB-INF/springmvc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/html/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/html/login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/html/login_ajax.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testmvc/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/target/testspringmvc-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testspringmvc/testspringmvc.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -97,12 +50,13 @@
     <session id="-819631478">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.5" value="2" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -142,32 +96,57 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-896322109">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.7" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="MF" value="2" />
+          <entry key="html" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="HTML" value="2" />
+          <entry key="Manifest" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="html" value="83" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="HTML" value="83" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/html/vue.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3100">
+              <caret line="298" column="7" selection-start-line="298" selection-start-column="7" selection-end-line="298" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/html/tulling.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="31" lean-forward="true" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/springmvc.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="115" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="16" selection-end-column="115" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/neuedu/controller/TestController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="48" selection-start-line="48" selection-end-line="65" selection-end-column="5" />
+            <state relative-caret-position="451">
+              <caret line="54" column="21" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
+              <folding>
+                <element signature="n#style#0;n#textarea#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -178,6 +157,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -202,6 +182,8 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/springmvc.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/html/vue.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/html/tulling.html" />
       </list>
     </option>
   </component>
@@ -248,8 +230,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -320,23 +300,30 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="testmvc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="testmvc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557991335060" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558347525052" />
     <property name="database.console.LAST_STATE" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -451,18 +438,20 @@
       <workItem from="1557991306494" duration="39000" />
       <workItem from="1557991373572" duration="148000" />
       <workItem from="1557991548698" duration="170000" />
-      <workItem from="1557991748907" duration="2581000" />
+      <workItem from="1557991748907" duration="2691000" />
+      <workItem from="1558080866546" duration="45000" />
+      <workItem from="1558315026122" duration="2873000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7221000" />
+    <option name="totallyTimeSpent" value="10249000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26752505" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2746781" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -471,10 +460,10 @@
       <window_info id="Capture Tool" order="6" />
       <window_info id="Learn" order="7" />
       <window_info id="Web" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Database Console" weight="0.32891566" />
+      <window_info anchor="bottom" id="Thumbnails" weight="0.32891566" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.36385542" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.36385542" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -488,6 +477,7 @@
       <window_info anchor="bottom" id="Java Enterprise" order="13" />
       <window_info anchor="bottom" id="Database Changes" order="14" />
       <window_info anchor="bottom" id="Version Control" order="15" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Console" order="16" weight="0.32891566" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -585,24 +575,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/springmvc.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="16" column="115" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="16" selection-end-column="115" />
+          <caret line="16" column="115" selection-start-line="15" selection-start-column="4" selection-end-line="16" selection-end-column="115" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/neuedu/controller/TestController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
+        <state relative-caret-position="480">
           <caret line="48" selection-start-line="48" selection-end-line="65" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/META-INF/MANIFEST.MF">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="31" lean-forward="true" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+        <state>
+          <caret column="8" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/html/vue.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3100">
+          <caret line="298" column="7" selection-start-line="298" selection-start-column="7" selection-end-line="298" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/html/tulling.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="54" column="21" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
+          <folding>
+            <element signature="n#style#0;n#textarea#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

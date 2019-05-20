@@ -12,13 +12,16 @@
         https://www.springframework.org/schema/context/spring-context.xsd">
 
     <mvc:annotation-driven/>
-    
+
+    <!-- 用于处理请求参数里有文件的情况 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
-    
+
+    <!-- controller位置 -->
     <context:component-scan base-package="com.neuedu.controller"></context:component-scan>
     
     <!-- if spring mvc can't find any controller, then find resource according to tomcat methods -->
     <!-- configure this so that static resources can be located -->
+    <!-- 开启spring后静态文件-->
     <mvc:default-servlet-handler/> 
 
 </beans>

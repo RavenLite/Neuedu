@@ -1631,3 +1631,45 @@ public class AccessControllAllowInterceptor implements HandlerInterceptor {
 ### 5.2 注意
 1. controller配置文件不和service所在的`applicationContext.xml`在一起（spring mvc相对spring来说相当于一个更小的容器）
 2. tomcat将项目发布到某一个指定位置，可以看一下Tomcat文件夹以便对web项目整体有更深理解，例如什么时候需要重启一下Tomcat
+
+## 6. 探究ajax
+利用ajax是另外一种向后台提交数据的方式，ajax的优势如下：
+- 表单方式我们不得不刷新整个页面，而ajax可以局部刷新
+- ajax是异步请求asynchronous，意味着我们可以同时发送多个ajax请求
+
+### 6.1 利用vue框架发送请求
+[Vue介绍](https://cn.vuejs.org/v2/guide/)
+vue是三大流行前端框架之一，也是其中最简单的一个。vue支持发送类ajax请求，且其具有的其他功能帮助我们更快展示页面。
+#### 6.1.1 安装
+- 直接用 `<script>` 引入
+  直接下载并用 `<script>` 标签引入，Vue 会被注册为一个全局变量。
+- NPM
+  在用 Vue 构建大型应用时推荐使用 NPM 安装。NPM 能很好地和诸如 webpack 或 Browserify 模块打包器配合使用。同时 Vue 也提供配套工具来开发单文件组件。
+
+对于我们的小demo，我们选择使用更轻量级的外链方式。
+
+#### 6.1.2 数据绑定
+- {{}}用于绑定DOM内数据
+- v-bind用于绑定DOM的属性值
+
+#### 6.1.3 其他常用基础操作
+文档写的很全面，不做详细介绍。
+- v-if 条件渲染
+- v-for 列表循环
+- v-on 方法调用
+- v-model 表单输入与应用状态绑定（在表单元素外使用不起作用）
+  v-bind 不支持双向绑定，v-model 支持
+
+#### 6.1.4 methods, computed, watch
+计算属性computed  
+Vue.js 的内联表达式非常方便，但如果涉及到比较复杂的场景，我们应该使用计算属性。  
+计算属性是用来声明式的描述一个值依赖了其它的值，当依赖的值发生改变时，其值才会相应的发生更改并更新相关的ＤＯＭ。  
+计算属性的方法名必须和属性名一样。
+> 在new Vue的配置参数中的computed和methods都可以处理大量的逻辑代码，但是什么时候用哪个属性，要好好区分一下才能做到正确的运用vue。  
+computed称为计算属性，顾名思义，计算就要返回一个计算的结果，所以，当我们要处理大量的逻辑，但是最后要取得最后的结果的时候可以用computed。  
+> 计算属性也避免了在页面内写逻辑代码，保护代码的结构层次清晰
+
+watch则关注数据改变，数据改变即被触发
+
+#### 6.1.5 http request
+注意跨域的问题

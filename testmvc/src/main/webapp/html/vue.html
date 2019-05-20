@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <style>
+        .div1
+        {
+            width:100px;
+            height:100px;
+            border:1px solid red;
+        }
+
+        .bgred
+        {
+            background-color:red;
+        }
+
+    </style>
+</head>
+<body>
+
+<!--  in vue.js, if you want to change DOM, you change the data of vue instance -->
+<div id="app">
+    {{ msg }}
+</div>
+
+<!-- v-bind:property -> :property -->
+<div id="app-2">
+		  <span :title="message">
+		    Hover your mouse over me for a few seconds
+		    to see my dynamically bound title!
+		  </span>
+</div>
+
+<div id="app-3">
+    <span v-if="seen">Now you see me</span>
+</div>
+
+<div id="app-4">
+    <ol>
+        <li v-for="todo in todos">
+            {{ todo.text }}
+        </li>
+    </ol>
+    <table>
+        <tr v-for="user in users">
+            <td>{{user.username}}</td>
+            <td>{{user.age}}</td>
+        </tr>
+    </table>
+</div>
+
+<div id="app-5">
+    <p>{{ message }}</p>
+    <button v-on:click="reverseMessage">Reverse Message</button>
+</div>
+
+<!-- v-model used in form controls, to enable two-way binding -->
+<div id="app-6">
+    <p>{{ message }}</p>
+    <input v-model="message">
+</div>
+
+<!-- v-on:click -> @blur -->
+<div id="app-7">
+    <input v-model="username" @blur="checkusername"/><span v-show="seen">username is not valid</span>
+</div>
+
+<div id="app-8">
+    <div class="div1" v-bind:class="{bgred:isActive}" v-on:click="changebg"></div>
+</div>
+
+<div id="app-9">
+    <input v-model="username"/><span v-show="seen">username should be more than 6 letters</span>
+</div>
+
+<div id="example">
+    <p>Original message: "{{ message }}"</p>
+    <p>Computed reversed message: "{{ reversedMessage }}"</p>
+
+    <input v-model="firstname" />
+    <input v-model="lastname" />
+    {{fullname}}
+</div>
+
+<div id="ajax">
+    <button @click="sendrequest">send asynchronous request</button>
+    <table>
+        <tr v-for="item in users">
+            <td>{{item.username}}</td>
+            <td>{{item.pwd}}</td>
+            <td>{{item.age}}</td>
+            <td>{{item.married}}</td>
+        </tr>
+    </table>
+</div>
+<script>
+
+    var ajax = new Vue({
+        el: '#ajax',
+        data: {
+
+            users:[]
+
+        },
+        methods:{
+
+            sendrequest:function()
+            {
+                console.log(this);
+                var that = this; //that refers to vue instance(ajax)
+                //send a ajax request(we need to use plugin for vue)
+                //vue-resource axios()
+                axios.get('../jsonfiles/data.json')
+                    .then(function (response) {
+                        console.log(response.data);
+                        //list the result as a table in the page
+                        console.log(this);//this refers to window
+                        that.users = response.data;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+
+        }
+    })
+
+
+
+    //watch->watch the change of property.
+    var app9 = new Vue({
+        el: '#app-9',
+        data: {
+            username: '',
+            seen:true
+        },
+        watch:{
+            username:function()
+            {
+                if(this.username.length>=6)
+                {
+                    this.seen = false;
+                }
+                else{
+                    this.seen = true;
+                }
+            }
+        }
+    })
+
+    var example = new Vue({
+        el: '#example',
+        data: {
+            message: 'Hello Vue!',
+            firstname:'',
+            lastname:'',
+            fullname:''
+        },
+        computed:{
+            reversedMessage:function()
+            {
+                //the function will be invoked each time message is changed
+                return this.message.split('').reverse().join('');
+            }/* ,
+					  fullname:function()
+					  {
+						  return this.firstname+" "+this.lastname;
+					  } */
+        },
+        /*  methods:
+             {
+                 getFullName:function()
+                 {
+                     return this.firstname+" "+this.lastname;
+                 }
+             }, */
+
+        watch:{
+            firstname:function(val)
+            {
+                this.fullname = val + " " +this.lastname;
+            },
+            lastname:function(val)
+            {
+                this.fullname = this.firstname +" "+val;
+            }
+        }
+    })
+
+
+
+    var app8 = new Vue({
+        el: '#app-8',
+        data: {
+            isActive: false,
+        },
+        methods:{
+            changebg:function()
+            {
+                //toggle bgred
+                this.isActive = !this.isActive;
+            }
+        }
+    })
+
+
+
+    var app7 = new Vue({
+        el: '#app-7',
+        data: {
+            username: '',
+            seen:false
+        },
+        methods:{
+            checkusername:function()
+            {
+                console.log(this.username.length);
+                //check the length of username
+                if(this.username.length<6)
+                {
+                    this.seen = true;
+                }
+                else
+                {
+                    this.seen = false;
+                }
+            }
+        }
+    })
+
+
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!',
+            msg:"haha"
+        }
+    })
+
+    var app2 = new Vue({
+        el: '#app-2',
+        data: {
+            message: 'You loaded this page on ' + new Date().toLocaleString()
+        }
+    })
+
+    var app3 = new Vue({
+        el: '#app-3',
+        data: {
+            seen: false
+        }
+    })
+
+    var app4 = new Vue({
+        el: '#app-4',
+        data: {
+            todos: [
+                { text: 'Learn JavaScript' },
+                { text: 'Learn Vue' },
+                { text: 'Build something awesome' }
+            ],
+            users:[
+                {username:"feiyy",age:38},
+                {username:"james",age:30},
+                {username:"lily",age:25}
+            ]
+        }
+    })
+
+    //this refers to current vue instance, in this case, this refers to app5
+    var app5 = new Vue({
+        el: '#app-5',
+        data: {
+            message: 'Hello Vue.js!'
+        },
+        methods: {
+            reverseMessage: function () {
+                this.message = this.message.split('').reverse().join('')
+            }
+        }
+    })
+
+
+    var app6 = new Vue({
+        el: '#app-6',
+        data: {
+            message: 'Hello Vue!'
+        }
+    })
+
+</script>
+</body>
+</html>

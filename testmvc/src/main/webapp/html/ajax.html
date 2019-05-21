@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+    {{user.username}}
+
+    <table>
+        <tr v-for="emp in emps">
+            <td>{{emp.empno}}</td>
+            <td>{{emp.ename}}</td>
+        </tr>
+    </table>
+</div>
+
+<script>
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+
+            user:{},
+            emps:[]
+
+        },
+        mounted:function()
+        {
+            var that = this;
+            //send a ajax request to our controller
+            axios.get('http://localhost:8080/ajax/testajax')
+                .then(function (response) {
+                    //console.log(response.data.username);
+                    console.log(response.data);
+                    that.user = response.data;
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+            //send a ajax request to our controller
+            axios.get('http://localhost:8080/ajax/emps')
+                .then(function (response) {
+                    //console.log(response.data.username);
+                    //vue helps us to convert from json str to object/array
+                    console.log(response.data);
+                    that.emps = response.data;
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+
+            //send a ajax request to get map
+            axios.get('http://localhost:8080/ajax/getmap')
+                .then(function (response) {
+                    //console.log(response.data.username);
+                    //vue helps us to convert from json str to object/array
+                    console.log(response.data);
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+        }
+    })
+
+</script>
+
+</body>
+</html>

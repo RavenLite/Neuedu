@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <textarea style="width:100%;height:500px" rows="" cols="">{{talks}}</textarea>
+    <input style="width:100%;" type="text" v-model="info"/>
+    <button @click="send">send</button>
+</div>
+
+<script>
+    /*
+      by default, brower does not allow you to send a ajax to different domain(same domain means same IP address, same port)
+
+      simple way here, to modify brower configuration
+
+      "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --disable-web-security --user-data-dir=E:/chrome-dev
+
+
+      to solve this problems:
+          1. set header on server-> CORS
+          2. (万能)
+             2.1 write java source to send http request to get the data, and return to ajax(not recommanded)
+             2.2 use nginx to set proxy, vue-cli
+          3. jsonp(script可以跨域+调用回调函数)-〉 jquery
+    */
+    var app = new Vue({
+        el: '#app',
+        data: {
+            info: '',
+            talk:[]
+        },
+        computed:{
+            talks:function()
+            {
+                var talkstr = '';
+                for(var i=0; i<this.talk.length;i++)
+                {
+                    talkstr = talkstr + this.talk[i] +'\r\n';
+                }
+                return talkstr;
+            }
+        },
+        methods:
+            {
+                send:function()
+                {
+                    var that = this;
+                    //put info i say into array
+                    this.talk.push("me:"+this.info);
+                    var that = this;
+                    axios.post('http://www.tuling123.com/openapi/api', {
+                        key: 'fb6b7bcfbe52fccdb7f5d752a3088f75',
+                        info: that.info
+                    })
+                        .then(function (response) {
+                            console.log(response.data);
+                            that.talk.push("tuling:"+response.data.text);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
+            }
+    })
+
+</script>
+
+</body>
+</html>

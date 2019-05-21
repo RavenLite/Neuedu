@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+	<div id="app">
+	     <input type="text" v-model="empno"  placeholder="empno"/>
+	     <input type="text" v-model="ename" placeholder="ename"/>
+	     <input type="text" v-model="job" placeholder="job"/>
+	     <button type="button" @click="search">search</button>
+	     
+	     <table>
+	        <tr v-for="emp in emps">
+	            <td>{{emp.empno}}</td>
+	            <td>{{emp.ename}}</td>
+	            <td>{{emp.job}}</td>
+	            <td>{{emp.hiredate}}</td>
+	            <td>{{emp.hiredatestr}}</td>
+	        </tr>
+	     </table>
+	</div>
+    
+     
+     <script>
+     var app = new Vue({
+   	  el: '#app',
+   	  data: {
+   		empno: "",
+   		ename:"",
+   		job:"",
+   		emps:[]
+	  },
+	  methods:{
+		  search:function()
+		  {	
+			  
+		      var that = this;
+		      console.log(that.empno);
+		      console.log(that.ename);
+		      console.log(that.job);
+			  //send ajax post request
+			 /*   axios.get('http://localhost:8080/testmvc/emp/emps?empno='+that.empno+'&ename='+that.ename+"&job="+that.job)
+				  .then(function (response) {
+				    console.log(response.data);
+				    that.emps = response.data;
+				  })
+				  .catch(function (error) {
+				    console.log(error);
+				  });  */
+				  
+		      axios.post('/emp/emps',{
+		    	  empno:that.empno,
+		    	  ename:that.ename,
+		    	  job:that.job		    	  
+		      })
+			  .then(function (response) {
+			    console.log(response.data);
+			    that.emps = response.data;
+			  })
+			  .catch(function (error) {
+			    console.log(error);
+			  });  	  
+		
+		  }
+		  
+	  }
+	})
+     
+     </script>
+
+</body>
+</html>

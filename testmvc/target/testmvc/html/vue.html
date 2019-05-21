@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <style>
         .div1
         {
@@ -85,7 +87,50 @@
     {{fullname}}
 </div>
 
+<div id="ajax">
+    <button @click="sendrequest">send asynchronous request</button>
+    <table>
+        <tr v-for="item in users">
+            <td>{{item.username}}</td>
+            <td>{{item.pwd}}</td>
+            <td>{{item.age}}</td>
+            <td>{{item.married}}</td>
+        </tr>
+    </table>
+</div>
 <script>
+
+    var ajax = new Vue({
+        el: '#ajax',
+        data: {
+
+            users:[]
+
+        },
+        methods:{
+
+            sendrequest:function()
+            {
+                console.log(this);
+                var that = this; //that refers to vue instance(ajax)
+                //send a ajax request(we need to use plugin for vue)
+                //vue-resource axios()
+                axios.get('../jsonfiles/data.json')
+                    .then(function (response) {
+                        console.log(response.data);
+                        //list the result as a table in the page
+                        console.log(this);//this refers to window
+                        that.users = response.data;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+
+        }
+    })
+
+
 
     //watch->watch the change of property.
     var app9 = new Vue({

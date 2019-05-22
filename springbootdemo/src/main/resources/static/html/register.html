@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+       <!-- http://localhost:8080/testmvc/html/register.html
+            http://localhost:8080/testmvc/test/register
+       
+        -->
+        
+        <!-- in terms of fileupload, the form must the following 2 rules:
+        
+         1. method = post
+         2. enctype = multipart/form-data
+         
+         enctype="application/x-www-form-urlencoded":username=?&password=?
+         enctype = multipart/form-data: form submit in binary format
+         -->
+
+		<div id="app">
+		      <input type="text" name="username" v-model="username"/>
+		      <input type="password" name="password" v-model="password"/>
+		      <input type="file" name="photo" /> 
+		      <button type="button" @click="doreg">register</button>
+		</div>
+             
+               
+      <script>
+     var app = new Vue({
+   	  el: '#app',
+   	  data: {
+   		username: "",
+   		password:""   		
+	  },
+	  methods:{
+		  doreg:function()
+		  {	
+			  
+		      var that = this;
+			  var formData = new window.FormData() // vue 中使用 window.FormData(),否则会报 'FormData isn't definded'
+			  formData.append('username',that.username);
+			  formData.append('password',that.password);
+			  formData.append('photo', document.querySelector('input[type=file]').files[0]) 
+			  
+			  /* var options = {  // 设置axios的参数
+			         url: '/reg/reg',
+			         data: formData,
+			         method: 'post',
+			         headers: { 
+			          'Content-Type': 'multipart/form-data'
+			         }
+			    } */
+			  //this.axios(options).then((res) => {}) // 发送请求
+			  axios({
+				  method: 'post',
+				  url: '/reg/reg',
+				  data: formData,
+				  headers: { 
+			          'Content-Type': 'multipart/form-data'
+			         }
+				}).then((res) => {
+					
+					console.log(res);
+	
+				});
+		  }
+		  
+	  }
+	})
+     
+    </script>
+ 
+
+</body>
+</html>

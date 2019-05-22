@@ -1,5 +1,5 @@
 
-<img src="http://ws1.sinaimg.cn/large/006tNc79ly1g30xqf7vbvj3080037aa7.jpg" width="200rpx"/>   
+<img src="http://ws1.sinaimg.cn/large/006tNc79ly1g30xqf7vbvj3080037aa7.jpg" width="200px"/>   
 
 # Introduction
 - 内容：Java互联网架构基础知识  
@@ -10,8 +10,10 @@
 - [Day 1 - Day 3: MyBatis](#day-1---day-3-mybatis)
 - [Day 4 - Day 5: Spring IOC](#day-4---day-5-spring-ioc)
 - [Day 6 - Day 7: Spring AOP](#day-6---day-7-spring-aop) 
-- [Day 8 - Day X: Spring MVC](#day-8---day-x-spring-mvc)
-- Learning...
+- [Day 8 - Day 12: Spring MVC](#day-8---day-x-spring-mvc)
+- [Day 13 - Day 13: Springboot](#day-13---day-13-springboot)
+- [Day 14 - Day X: Team Project - 1]()
+- Working...
 
 ## Warning
 ⚠️**受本人学识所限，本项目笔记的学习意义不大，更多地可作为同期课程同学对课堂知识的一个回顾即课程讲义😋**  
@@ -1282,7 +1284,7 @@ try {
 
 **高效学习框架知识：注重阅读文档，兼而学习底层知识。**
 
-# Day 8 - Day X: Spring MVC
+# Day 8 - Day 12: Spring MVC
 ## 1. Spring MVC介绍
 ### 1.1 回想
 回想之前我们学习的三个技术，加上今天要学习的Spring MVC，共同组成了一个web项目要使用的基本框架。  
@@ -1649,8 +1651,8 @@ vue是三大流行前端框架之一，也是其中最简单的一个。vue支�
 对于我们的小demo，我们选择使用更轻量级的外链方式。
 
 #### 6.1.2 数据绑定
-- {{}}用于绑定DOM内数据
-- v-bind用于绑定DOM的属性值
+- `{{ message }}` 用于绑定DOM内数据
+- `v-bind` 用于绑定DOM的属性值
 
 #### 6.1.3 其他常用基础操作
 文档写的很全面，不做详细介绍。
@@ -1673,3 +1675,172 @@ watch则关注数据改变，数据改变即被触发
 
 #### 6.1.5 http request
 注意跨域的问题
+
+### 6.2 返回json
+
+#### 6.2.1 json选用
+有很多json库可以选用，GJSON，fastjson等，Spring MVC 推荐 Jackson。
+```xml
+<!-- this dependency is used to convert between json str and js object -->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.9.8</version>
+</dependency>
+```
+
+#### 6.2.2 编写RestController
+```java
+@RestController
+public class AjaxController {
+
+    @RequestMapping("/testajax")
+    public String ajax()
+    {
+        // convert from json string to js object
+        return "{\"username\":\"raven\"}";
+    }
+}
+```
+>RestController 与 Controller  
+知识点：@RestController注解相当于@ResponseBody ＋ @Controller合在一起的作用。  
+
+>1.如果只是使用@RestController注解Controller，则Controller中的方法无法返回jsp页面，或者html，配置的视图解析器 InternalResourceViewResolver不起作用，返回的内容就是Return 里的内容。  
+>2.如果需要返回到指定页面，则需要用 @Controller配合视图解析器InternalResourceViewResolver才行。  
+>3.如果需要返回JSON，XML或自定义mediaType内容到页面，则需要在对应的方法上加上@ResponseBody注解。
+
+>例如：  
+1.使用@Controller 注解，在对应的方法上，视图解析器可以解析return 的jsp,html页面，并且跳转到相应页面。若返回json等内容到页面，则需要加@ResponseBody注解。  
+2.@RestController注解，相当于@Controller+@ResponseBody两个注解的结合，返回json数据不需要在方法前面加@ResponseBody注解了，但使用@RestController这个注解，就不能返回jsp,html页面，视图解析器无法解析jsp,html页面
+
+#### 6.2.3 前端效果
+```js
+mounted:function()
+{
+    var that = this;
+    //send an ajax request to our controller
+    axios.get('http://localhost:8080/testmvc/testajax')
+        .then(function (response) {
+            //console.log(response.data.username);
+            that.user = response.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+```
+
+#### 6.2.4 支持更多
+`@RestController`标记下，`return`后的内容自动被转为JSON（利用前面加入的Jackson依赖）。`return`可以返回字符串、json字符串、Java Collection等。
+```java
+@RequestMapping("/emps")
+public List<Emp> getAllEmps()
+{
+    List list = new ArrayList<>();
+
+    Emp e1 = new Emp();
+    e1.setEmpno(1);
+    e1.setEname("KING");
+
+    Emp e2 = new Emp();
+    e2.setEmpno(2);
+    e2.setEname("SMITH");
+
+    list.add(e1);
+    list.add(e2);
+
+    //jackson works to convert list to json str
+    return list;
+}
+
+@RequestMapping("/getmap")
+public Map<String,Emp> getMap()
+{
+    Map<String,Emp> m = new HashMap<>();
+
+    Emp e = new Emp();
+    e.setEmpno(1);
+    e.setEname("CLARK");
+    e.setHiredatestr("2018-4-2");
+
+    m.put("CLARK", e); 
+
+    return m;
+}
+```
+
+# Day 13 - Day 13: Springboot
+- [SpringInitializr](https://start.spring.io/)
+- [参考博客](https://www.cnblogs.com/ityouknow/p/5662753.html)  
+Spring Boot 是由 Pivotal 团队提供的全新框架，其设计目的是用来简化新 Spring 应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。用我的话来理解，就是 Spring Boot 其实不是什么新的框架，它默认配置了很多框架的使用方式，就像 Maven 整合了所有的 Jar 包，Spring Boot 整合了所有的框架。
+
+## 1. 介绍
+### 1.1 核心思想
+约定优于配置convention is better than configuration
+
+### 1.2 好处
+其实就是简单、快速、方便！平时如果我们需要搭建一个 Spring Web 项目的时候需要怎么做呢？
+
+- 1）配置 web.xml，加载 Spring 和 Spring mvc
+- 2）配置数据库连接、配置 Spring 事务
+- 3）配置加载配置文件的读取，开启注解
+- 4）配置日志文件
+- ...
+- 配置完成之后部署 Tomcat 调试
+- ...
+现在非常流行微服务，如果我这个项目仅仅只是需要发送一个邮件，如果我们的项目仅仅是生产一个积分；我都需要这样折腾一遍!  
+但是如果使用 Spring Boot 呢？  
+很简单，我们仅仅只需要非常少的几个配置就可以迅速方便的搭建起来一套 Web 项目或者是构建一个微服务！  
+
+## 2. 上手
+### 2.1 新建文件
+有两种常用方式创建springboot项目
+- 在[官网](https://start.spring.io/)上配置并下载springboot项目包，而后导入IDE
+- 直接使用intellij IDEA --> New --> Project --> Spring Initializr 新建项目
+  观察可见，如下图，IDEA其实也是帮助你去从官网下载springboot项目包  
+  <img src="http://ww2.sinaimg.cn/large/006tNc79ly1g3a2m5pxdnj30vu0u00xt.jpg" width="400px" >
+
+### 2.2 项目结构介绍
+- src/main/java  程序开发以及主程序入口
+- src/main/resources 配置文件
+- src/test/java  测试程序
+
+## 3. Demo
+### 3.1 Controller
+*TestController.java*
+```java
+@RestController
+@RequestMapping("/test")
+public class TestController {
+
+    private TestService testService;
+
+    @Autowired
+    public TestController(TestService testService) {
+        this.testService = testService;
+    }
+
+    @RequestMapping("/test")
+    public String test()
+    {
+        return "{\"result\":true}";
+    }
+}
+```
+
+### 3.2 启动主程序
+*SpringbootdemoApplication*
+```java
+@SpringBootApplication
+public class SpringbootdemoApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(SpringbootdemoApplication.class, args);
+    }
+}
+```
+
+### 3.3 总结
+是的，快速启动一个springboot非常简单，尤其是免去了Tomcat的配置，springboot依赖了一个内嵌的Tomcat。  
+同时要注意包的命名，springboot约定了一些包名，例如它会自动在`controller`包内搜索路径。想在其他包内编写路径也可以，不过就需要额外的配置了。再次体现**约定优于配置**的设计思想。  
+Springboot将本就简化了开发工作的Spring MVC再一次简化，尤其是对于小型应用可快速完成部署。使用 Spring Boot 可以非常方便、快速搭建项目，使我们不用关心框架之间的兼容性，适用版本等各种问题，我们想使用任何东西，仅仅添加一个配置就可以，所以使用 Spring Boot 非常适合构建微服务。  
+另外，Springboot还提供热部署功能，安装一个依赖即可，[参考](https://blog.csdn.net/sinat_32867867/article/details/81535770)  

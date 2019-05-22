@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+     <input type="text" v-model="ename" />
+     <input type="text" v-model="job" />
+     <input type="date" v-model="hiredatestr" />
+     <select v-model="deptno">
+         <option>10</option>
+         <option>20</option>
+         <option>30</option>
+     </select>
+     <input type="file"/>
+     <button type="button" @click="registeremp">Register Emp</button>
+</div>
+
+<script>
+var app = new Vue({
+ 	  el: '#app',
+ 	  data: {
+ 		ename: "",
+ 		job:"",
+ 		hiredatestr:"",
+ 		deptno:""
+	  },
+	  methods:{
+		  registeremp:function()
+		  {	
+			  var that = this;
+			  //you need to create object called formdata
+			  var formData = new window.FormData() //this is used in vue
+			  //add attributes in the formData
+			  formData.append('ename',that.ename);
+			  formData.append('job',that.job);
+			  formData.append('hiredatestr',that.hiredatestr);
+			  formData.append('photo', document.querySelector('input[type=file]').files[0]) 
+			  		  
+			  var that = this;  
+			  axios({
+				  method: 'post',
+				  url: '/test/registeremp',
+				  data: formData,
+				  headers: { 
+			          'Content-Type':'multipart/form-data'
+			      }
+				}).then(function (response) {
+				    console.log(response);
+				  })
+				  .catch(function (error) {
+				    console.log(error);
+				  });
+		  }
+		  
+	  }
+	})
+
+</script>
+
+</body>
+</html>

@@ -6,26 +6,27 @@
 - 时间：2019.05-07 - 2019.07.05  
 - 背景：软件学院大三下学期9学分[企业项目实训](http://sc.neu.edu.cn/2019/0328/c99a90425/page.htm)
 
-## Contents 
+## 1. Contents 
 - [Day 1 - Day 3: MyBatis](#day-1---day-3-mybatis)
 - [Day 4 - Day 5: Spring IOC](#day-4---day-5-spring-ioc)
 - [Day 6 - Day 7: Spring AOP](#day-6---day-7-spring-aop) 
 - [Day 8 - Day 12: Spring MVC](#day-8---day-x-spring-mvc)
 - [Day 13 - Day 13: Springboot](#day-13---day-13-springboot)
-- [Day 14 - Day X: Team Project - 1]()
+- [Day 14 - Day X: Team Project (First Part)](#day-14---day-x-team-project-first-part)
 - Working...
 
-## Warning
-⚠️**受本人学识所限，本项目笔记的学习意义不大，更多地可作为同期课程同学对课堂知识的一个回顾即课程讲义😋**  
+## 2. Warning
+⚠️**受本人学识所限，本笔记项目的学习意义不大，更多地可作为同期课程同学对课堂知识的一个回顾即课程讲义。如果对您有帮助的话，烦请为我点一个Star😋**  
 
-## Contribution
-**欢迎各位大佬在[本项目](https://github.com/Raven98/Neuedu)发起PR或在Issues里留言邀请您成为协作者，共同完善本文档**
+## 3. Contribution
+**欢迎各位大佬在[本项目](https://github.com/Raven98/Neuedu)发起[PR](https://github.com/Raven98/Neuedu/pulls)或在[Issues](https://github.com/Raven98/Neuedu/issues)里留言邀请您成为协作者，共同完善本文档**
 ```bash
 git clone https://github.com/Raven98/Neuedu.git
 ```
 ***
 为了获得更优阅读体验，您可移步至我的博客：
-[东软睿道实训杂记](https://ravenxu.top/2019/05/07/%E4%B8%9C%E8%BD%AF%E7%9D%BF%E9%81%93%E5%AE%9E%E8%AE%AD%E6%9D%82%E8%AE%B0/)
+[东软睿道实训杂记](https://ravenxu.top/东软睿道实训杂记/)
+***
 
 # Day 1 - Day 3: MyBatis
 - [参考代码](https://github.com/Raven98/Neuedu/tree/master/TestMyBatis)
@@ -102,7 +103,7 @@ DeptMapper mapper = session.getMapper(DeptMapper.class);
 Dept d = mapper.selectDept(20);
 System.out.println(d.getDeptno()+"\t"+d.getDname()+"\t"+d.getLoc());
 ```
->新旧方式对比(个人理解)  
+>**新旧方式对比(个人理解)**  
 ![](http://ws3.sinaimg.cn/large/006tNc79ly1g2sifw8z3tj30fz0aujrd.jpg)
 旧方式业务代码直接根据(namespace+id)调用XML里面的某一个方法  
 新方式将XML和接口双向绑定，业务代码不需要知道XML文件内容，直接调用接口。  
@@ -1844,3 +1845,9 @@ public class SpringbootdemoApplication {
 同时要注意包的命名，springboot约定了一些包名，例如它会自动在`controller`包内搜索路径。想在其他包内编写路径也可以，不过就需要额外的配置了。再次体现**约定优于配置**的设计思想。  
 Springboot将本就简化了开发工作的Spring MVC再一次简化，尤其是对于小型应用可快速完成部署。使用 Spring Boot 可以非常方便、快速搭建项目，使我们不用关心框架之间的兼容性，适用版本等各种问题，我们想使用任何东西，仅仅添加一个配置就可以，所以使用 Spring Boot 非常适合构建微服务。  
 另外，Springboot还提供热部署功能，安装一个依赖即可，[参考](https://blog.csdn.net/sinat_32867867/article/details/81535770)  
+
+
+# Day 14 - Day X: Team Project (First Part)
+<img src="http://ww3.sinaimg.cn/large/006tNc79ly1g3cckd0xxhj30i7050gm1.jpg" width="400px" />
+
+*项目代码将在答辩结束后全部开源*

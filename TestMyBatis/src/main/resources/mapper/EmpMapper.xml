@@ -62,7 +62,6 @@
         </association>
     </resultMap>
 
-
     <!-- 动态查询 if -->
     <select id="getEmpByConditions" resultType="Emp">
       select * from emp

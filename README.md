@@ -8,7 +8,7 @@
 
 ## 1. Contents 
 - [Day 1 - Day 3: MyBatis](#day-1---day-3-mybatis)
-- [Day 4 - Day 5: Spring IOC](#day-4---day-5-spring-ioc)
+- [Day 4 - Day 5: Spring IoC](#day-4---day-5-spring-ioc)
 - [Day 6 - Day 7: Spring AOP](#day-6---day-7-spring-aop) 
 - [Day 8 - Day 12: Spring MVC](#day-8---day-x-spring-mvc)
 - [Day 13 - Day 13: Springboot](#day-13---day-13-springboot)
@@ -344,18 +344,18 @@ public static void queryByPage() {
 4. 存储过程的使用场景：阿里巴巴Java开发手册明确写明了禁止使用存储过程，究其原因更多是因为存储过程代码可读性极差、debug困难，对于阿里这样的大企业有其他措施弥补性能；对于东软这样的外包公司，如果是一个**需求明确**的任务还是可以写存储过程的，毕竟因为存储过程在数据库内一次性完成多个操作性能会更好。
 
 
-# Day 4 - Day 5: Spring IOC
+# Day 4 - Day 5: Spring IoC
 - [参考代码(基于XML)](https://github.com/Raven98/Neuedu/tree/master/SpringCore)  
 - [参考代码(基于注解)](https://github.com/Raven98/Neuedu/tree/master/testspringannotation)  
 - [Spring官方文档](https://docs.spring.io/spring/docs/5.1.6.RELEASE/spring-framework-reference/core.html)  
 - [费老师著作](https://www.kancloud.cn/winter1981/spring/543484)
 
-## 1. 了解Spring IOC
-### 1.1. IOC: invertion of control
-#### Demo for IOC
+## 1. 了解Spring IoC
+### 1.1. IoC: invertion of control
+#### Demo for IoC
 ```java
 public class TestService {
-    // IOC inversion of control, also called DI(dependency injection)
+    // IoC inversion of control, also called DI(dependency injection)
     private TestDAO testDAO;
 
     public void setTestDAO(TestDAO testDAO) {
@@ -388,7 +388,7 @@ testspringcore.TestService@6d4b1c02
 
 Process finished with exit code 0
 ```
-IOC的目的是要让Sring来创建我们所需要的对象，不需要通过new建立。我们在applicationContext.xml配置Java bean对象即可被spring所调用。Spring默认使用单例模式。（上面的hash值指向同一个对象）由Spring所创建的对象被放到Spring的容器中。
+IoC的目的是要让Sring来创建我们所需要的对象，不需要通过new建立。我们在applicationContext.xml配置Java bean对象即可被spring所调用。Spring默认使用单例模式。（上面的hash值指向同一个对象）由Spring所创建的对象被放到Spring的容器中。
 
 ### 1.2.单例模式 Singleton
 > 单例模式与静态类
@@ -1014,7 +1014,7 @@ class MyService
 
 ### 3.2. 编译过程修改编译生成的class文件
 - Aspectj修改.class文件
-- Spring AOP依赖IOC
+- Spring AOP依赖IoC
 
 ## 4. @Around
 利用`@Around`我们可以显式地指明语句插入的位置，利用`@Around`代替上面的四个注解完成JDBC事务管理如下：
@@ -1151,7 +1151,7 @@ public class TransactionAdvisor implements MethodInterceptor {
 一些早期项目，考虑到项目稳定性以及团队成员的学习问题还更喜欢xml，当然xml配置也有自身的有点，在上面提到过最显著的两点。
 
 ## 7. MyBatis + Spring
-**核心问题：**MyBatis实现IOC由Spring创建并控制
+**核心问题：**MyBatis实现IoC由Spring创建并控制
 >数据库连接池
 
 ### 7.1. 分析配置文件
@@ -1281,7 +1281,7 @@ try {
 
 ### 8.4. 一点想法
 在实现了Spring+MyBatis整合配置后，我惊讶的发现项目代码量减少很多，主要原因是常用的类
-都交由Spring内置的类实现了，所以如果我们直接学习内置类使用的话就很难理解深层次的细节问题，所以还是得从头学起，了解JDBC和MyBatis的差异，了解Spring IOC怎样作为容器管理实例，了解Spring AOP怎样实现动态代理。  
+都交由Spring内置的类实现了，所以如果我们直接学习内置类使用的话就很难理解深层次的细节问题，所以还是得从头学起，了解JDBC和MyBatis的差异，了解Spring IoC怎样作为容器管理实例，了解Spring AOP怎样实现动态代理。  
 举例说明项目代码量减少，我们最后的项目不用手写数据库事务管理类，二是用了Spring提供的`org.springframework.jdbc.datasource.DataSourceTransactionManager`类，这主要是因为AOP的主流使用场景就固定那几种，Spring作为一个好用的框架自然无死角的帮助开发者少做工作，懒惰是推动技术进步的动力哈哈。
 
 **高效学习框架知识：注重阅读文档，兼而学习底层知识。**
@@ -1292,7 +1292,7 @@ try {
 回想之前我们学习的三个技术，加上今天要学习的Spring MVC，共同组成了一个web项目要使用的基本框架。  
 这四个技术分别应用的MVC模型中的如下部分：
 - Spring MVC: Controller Layer
-- Spring IOC: All
+- Spring IoC: All
 - Spring AOP: Service Layer
 - MyBatis: mapper
 

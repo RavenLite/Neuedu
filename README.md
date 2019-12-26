@@ -1852,5 +1852,5 @@ Springboot将本就简化了开发工作的Spring MVC再一次简化，尤其是
 <img src="http://ww3.sinaimg.cn/large/006tNc79ly1g3cckd0xxhj30i7050gm1.jpg" width="400px" />
 
 *项目代码现已全部开源*  
-**NeusoftCloudHospital(https://github.com/SteveGan/NeusoftCloudHospital)**
+**[NeusoftCloudHospital](https://github.com/SteveGan/NeusoftCloudHospital)**
 
